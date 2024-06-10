@@ -1,9 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import './navbar.component.css'
 
+
 const Navbar: React.FC = () => {
+    const navigate = useNavigate();
+    
+    const onLogout = () =>{
+        navigate('/login',{
+            replace:true
+        })
+    }
     return(
         <div className="navbar">
             <div className="navbar__logo">
@@ -11,12 +19,18 @@ const Navbar: React.FC = () => {
             </div>
             <nav className="navbar__nav">
                 <ul>
-                    <li><Link className='nav__link nav--focus' to={"/"}>Inicio</Link></li>
-                    <li><Link className='nav__link' to={"/students"}>Estudiantes</Link></li>
-                    <li><Link className='nav__link' to={"/teachers"}>Profesores</Link></li>
-                    <li><Link className='nav__link' to={"/billing"}>Facturacion</Link></li>
-                    <li><Link className='nav__link' to={"/administration"}>Administracion</Link></li>
+                    <li><NavLink className='nav__link nav--focus' to={"/"}>Inicio</NavLink></li>
+                    <li><NavLink className='nav__link' to={"/AdminStudents"}>Estudiantes</NavLink></li>
+                    <li><NavLink className='nav__link' to={"/AdminTeacher"}>Profesores</NavLink></li>
+                    <li><NavLink className='nav__link' to={"/billing"}>Facturacion</NavLink></li>
+                    <li><NavLink className='nav__link' to={"/AdminUpFile"}>Administracion</NavLink></li>
+                    <li><NavLink className='nav__link' to={"/AdminQualifications"}>Calificaciones</NavLink></li>
                 </ul>
+                <button 
+                        className='nav-item nav-link btn'
+                        onClick={onLogout}
+                        >Logout
+                </button>
             </nav>
         </div>
     )
