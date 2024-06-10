@@ -1,0 +1,89 @@
+.profile-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 18px;
+    box-shadow: 0px 3px 4px 1px #0a0a0a66;
+    background: linear-gradient(#002b3b 35%, #fafafa 35%);
+    padding: 28px;
+    padding-top: 180px;
+  }
+  
+  .profile-card__image {
+    position: absolute;
+    top: 22px;
+    left: 28px;
+    background-color: #fafafa;
+    border: 6px solid #fafafa;
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+  }
+  
+  .profile-card__image img {
+    width: 100%;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    outline: 3px solid #12d983;
+  }
+  
+  .profile-card__buttons {
+    display: flex;
+    justify-content: end;
+    padding-bottom: 6px;
+    color: #505050;
+    gap: 16px;
+    font-size: 1.7em;
+  }
+  
+  .profile-card__name {
+    font-size: 1.4em;
+    margin-bottom: 2px;
+  }
+  
+  .profile-card__info {
+    display: flex;
+    gap: 140px;
+  }
+  
+  .info__title {
+    font-size: 1.3em;
+    color: #808080;
+    font-weight: 400;
+    margin-bottom: 18px;
+  }
+  
+  .info--main .info__title {
+    font-size: 1.3em;
+    color: #808080;
+    font-weight: 600;
+    margin-bottom: 18px;
+    margin-top: 18px;
+  }
+  
+  .info__data {
+    display: flex;
+    align-items: center;
+    font-size: 1.1em;
+    gap: 8px;
+  }
+  
+  .info--main .info__data {
+    color: #808080;
+  }
+  
+  .info__data .icon {
+    color: #fafafa;
+    padding: 8px;
+    font-size: 1.4em;
+    border-radius: 50%;
+    background-color: #002b3b;
+  }
+  
+  .info--main .info__data .icon {
+    color: #002b3b;
+    background-color: transparent;
+    padding: 6px;
+    font-size: 1.4em;
+  }
+  
