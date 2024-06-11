@@ -1,0 +1,13 @@
+.article-card {
+  background: linear-gradient(transparent 70%, #002b3b), url("images/paint.png");
+  background-size: cover;
+  padding: 18px;
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #fafafa;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  flex-grow: 1;
+  flex-basis: 0;
+}

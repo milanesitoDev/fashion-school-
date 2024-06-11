@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Navbar from '../../components/navbar/navbar.component'
-import ArticleCard from '../../components/articleCard/articleCard.components'
+import ArticleCard from '../../components/articleCard/articleCard.component'
 
 import './home.page.css'
 

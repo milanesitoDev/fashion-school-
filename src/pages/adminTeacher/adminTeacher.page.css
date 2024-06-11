@@ -1,26 +1,25 @@
 .admin-teacher__container {
-    display: flex;
-    min-height: 100vh;
-  }
-  
-  .admin-teacher__container aside {
-    width: 80px;
-    background-color: #fafafa;
-    box-shadow: 2px 0px 10px 1px #0a0a0a22;
-    z-index: 10;
-  }
-  
-  .admin-teacher {
-    flex-grow: 1;
-    padding: 80px;
-    padding-right: 160px;
-    background-color: #f0f0f0;
-  }
-  
-  .admin-teacher__wrapper {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 50px;
-    margin-top: 50px;
-  }
-  
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-teacher__container aside {
+  width: 80px;
+  background-color: #fafafa;
+  box-shadow: 2px 0px 10px 1px #0a0a0a22;
+  z-index: 10;
+}
+
+.admin-teacher {
+  flex-grow: 1;
+  padding: 80px;
+  padding-right: 160px;
+  background-color: #f0f0f0;
+}
+
+.admin-teacher__wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 50px;
+  margin-top: 50px;
+}

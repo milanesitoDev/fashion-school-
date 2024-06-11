@@ -1,8 +1,22 @@
-import ChatMessage from "../chatMessage/chatMessage.components";
+import ChatMessage from "../chatMessage/chatMessage.component";
 
-import "./chatMessages.components.css";
+import "./chatMessages.component.css";
 
-const ChatMessages: React.FC = () => {
+type message = {
+  text: string;
+  time: Date;
+};
+
+type chat = {
+  chat: string;
+  messages: message[];
+};
+
+interface ChatMessagesProps {
+  messages: chat[];
+}
+
+const ChatMessages: React.FC<ChatMessagesProps> = ({ messages }) => {
   return (
     <div className="chat-messages">
       <h3 className="chat-messages__title">Mensajes</h3>
@@ -13,10 +27,9 @@ const ChatMessages: React.FC = () => {
         </button>
       </form>
       <div className="chat-messages__list">
-        <ChatMessage />
-        <ChatMessage />
-        <ChatMessage />
-        <ChatMessage />
+        {messages.map((chat) => {
+          return <ChatMessage chat={chat} />;
+        })}
       </div>
       <button className="chat-messages__btn">Ver mas</button>
     </div>

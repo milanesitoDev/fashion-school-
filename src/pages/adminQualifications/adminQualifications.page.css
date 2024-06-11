@@ -1,0 +1,114 @@
+.admin-qualifications__container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-qualifications__container aside {
+  width: 80px;
+  background-color: var(--bg-color1);
+  box-shadow: 2px 0px 10px 1px var(--sdw-color1);
+  z-index: 10;
+}
+
+.admin-qualifications {
+  flex-grow: 1;
+  padding: 80px;
+  padding-right: 160px;
+  background-color: var(--bg-color2);
+}
+
+.admin-qualifications__info {
+  margin-top: 50px;
+}
+
+.admin-qualifications__name {
+  font-size: 2.2em;
+  color: var(--color2);
+}
+
+.admin-qualifications__list {
+  display: flex;
+  padding: 18px 8px;
+  list-style: none;
+  gap: 50px;
+  font-size: 1.2em;
+  color: var(--fg-color2);
+}
+
+.list--bold {
+  font-weight: 500;
+  color: var(--fg-color1);
+}
+
+.admin-qualifications__value {
+  font-size: 1.2em;
+  font-weight: 500;
+  margin: 16px 0;
+}
+
+.admin-qualifications__subject {
+  font-size: 1.4em;
+  color: var(--fg-color2);
+  font-weight: 500;
+  margin: 18px 0;
+}
+
+.admin-qualifications__form {
+  display: flex;
+  justify-content: end;
+  gap: 16px;
+  align-items: center;
+}
+.admin-qualifications__form label {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.admin-qualifications__form .form__input {
+  padding: 2px 12px;
+  background-color: var(--bg-color1);
+  border-radius: 10px;
+  border: 1px solid var(--color1);
+  display: flex;
+  align-items: center;
+}
+
+.admin-qualifications__form .form__input input {
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+}
+
+.admin-qualifications__form .form__input button {
+  padding: 10px;
+  background-color: transparent;
+  font-size: 1.5em;
+  border: none;
+  line-height: 0.8;
+  color: var(--fg-color2);
+}
+
+.admin-qualifications__table {
+  width: 100%;
+  text-align: center;
+  margin-top: 28px;
+  font-size: 1em;
+  border-collapse: collapse;
+}
+
+.admin-qualifications__table th {
+  width: 25%;
+  background-color: var(--color1);
+  color: var(--bg-color1);
+  font-weight: 400;
+  padding: 18px 0;
+  border: 1px solid var(--bg-color1);
+}
+
+.admin-qualifications__table td {
+  width: 25%;
+  padding: 24px 0;
+  border: 1px solid var(--fg-color1);
+}
