@@ -17,7 +17,7 @@ interface ChatMessageProps {
 const ChatMessage: React.FC<ChatMessageProps> = ({ chat }) => {
   return (
     <div className="chat-message">
-      <img src='./images/profile.jpg' alt="Profile" />
+      <img src="images/profile.jpg" alt="Profile" />
       <div className="chat-message__info">
         <p className="chat-message__name">{chat.chat}</p>
         <p className="chat-message__text">

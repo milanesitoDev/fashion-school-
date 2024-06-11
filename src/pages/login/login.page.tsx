@@ -7,13 +7,15 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-
+ 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    console.log('API URL:', process.env.REACT_APP_API_URL);
     e.preventDefault();
     setMessage("");
-  
+    console.log('API URL:', process.env.REACT_APP_API_URL);
     try {
-      const response = await axios.post('http://18.222.67.121/api/login', {
+      
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
         email,
         password,
       });

@@ -31,7 +31,8 @@ const Register: React.FC = () => {
     setMessage("");
 
     try {
-      const response = await axios.post<RegisterSuccessResponse>('http://18.222.67.121/api/users', {
+      console.log(process.env.REACT_APP_API_URL, )
+      const response = await axios.post<RegisterSuccessResponse>(`${process.env.REACT_APP_API_URL}/users`, {
         name: data.name,
         email: data.email,
         rol_id: 2,
