@@ -19,7 +19,8 @@
 
 .header__text {
   margin-left: 12px;
-  margin-bottom: 60px;
+  margin-top: 50px;
+  margin-bottom: 40px;
 }
 
 .header__text p {
@@ -47,12 +48,10 @@
 /* --- GALLERY SECTION --- */
 
 .gallery {
-  display: grid;
   place-content: center;
-  grid-template-columns: repeat(3, 380px);
-  grid-template-rows: repeat(2, 380px);
   padding: 120px;
 }
+
 
 /* --- NOTICES SECTION --- */
 

@@ -9,10 +9,8 @@ const Login: React.FC = () => {
   const [message, setMessage] = useState("");
  
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    console.log('API URL:', process.env.REACT_APP_API_URL);
     e.preventDefault();
     setMessage("");
-    console.log('API URL:', process.env.REACT_APP_API_URL);
     try {
       
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
@@ -68,7 +66,11 @@ const Login: React.FC = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Link className='login__form-link' to="/register">Registrarse</Link>
+            <div>
+            <Link className='login__form-link' to={"/forgotpassword"}>¿Olvidaste tu contraseña?</Link>
+            <Link className='register__form-link' to="/register">Registrarse</Link>
+            </div>
+
             <input type="submit" value="Ingresar" />
           </form>
           {message && <p>{message}</p>}

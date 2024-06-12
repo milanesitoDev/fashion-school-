@@ -31,7 +31,6 @@ const Register: React.FC = () => {
     setMessage("");
 
     try {
-      console.log(process.env.REACT_APP_API_URL, )
       const response = await axios.post<RegisterSuccessResponse>(`${process.env.REACT_APP_API_URL}/users`, {
         name: data.name,
         email: data.email,
@@ -67,7 +66,7 @@ const Register: React.FC = () => {
       <div className="register">
         <img className='register__logo' src="images/saint-logo.png" alt="Saint College Logo" />
         <div className="register__form-container">
-          <h2 className='register__form-title'>Register</h2>
+          <h2 className='register__form-title'>Registrarse</h2>
           <form className="register__form" onSubmit={handleSubmit(onSubmit)}>
             <input
               {...register("name", { required: true })}
@@ -95,8 +94,16 @@ const Register: React.FC = () => {
           {message && <p>{message}</p>}
         </div>
       </div>
+      <div className="register__side-banner">
+        <div className="side-banner__box">
+          <h2>La Mejor</h2>
+          <h3>Universidad de diseño!</h3>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti, eius!</p>
+        </div>
+      </div>
     </div>
   );
 }
 
 export default Register;
+

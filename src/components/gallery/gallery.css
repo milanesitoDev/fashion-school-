@@ -1,0 +1,51 @@
+/* Estilo general del contenedor de la cuadrícula */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  
+  /* Estilo para las columnas */
+  .col-span-1 {
+    grid-column: span 1 / span 1;
+    height: 250px !important;
+  }
+  
+  .col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+  
+  /* Estilo para los elementos internos de cada columna */
+  .bg-gray-100 {
+    background-color: #2d3748; /* Color de fondo claro */
+  }
+  
+  .dark .bg-gray-800 {
+    background-color: #2d3748; /* Color de fondo oscuro */
+  }
+  
+  .p-6 {
+    padding: 1.5rem; /* Espaciado interno */
+  }
+
+  
+  .text-lg {
+    font-size: 1.125rem; /* Tamaño de texto grande */
+  }
+  
+  .font-semibold {
+    font-weight: 600; /* Peso de fuente semi-negrita */
+  }
+  
+  .mb-2 {
+    margin-bottom: 0.5rem; /* Espaciado inferior */
+  }
+  
+  .text-gray-500 {
+    color: #6b7280; /* Color de texto gris claro */
+  }
+  
+  .dark .text-gray-400 {
+    color: #9ca3af; /* Color de texto gris oscuro */
+  }
+  

@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/home/home.page";
-import Login from "./pages/login/login.page";
+import Login from "./auth/pages/login/login.page";
 import AdminTeacher from "./pages/adminTeacher/adminTeacher.page";
 import AdminQualifications from "./pages/adminQualifications/adminQualifications.page";
 import AdminCalendar from "./pages/adminCalendar/adminCalendar.page";
@@ -10,7 +10,8 @@ import AdminStudents from "./pages/adminStudents/adminStudents.page";
 import AdminCourse from "./pages/adminCourse/adminCourse.page";
 
 import "./App.css";
-import Register from "./pages/register/register.pages";
+import Register from "./auth/pages/register/register.pages";
+import ForgotPassword from "./auth/pages/forgotPass/forgotPassword.page";
 
 function App() {
   type teacher = {
@@ -164,6 +165,7 @@ function App() {
         ></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
+        <Route path="/forgotpassword" element={<ForgotPassword/>} />
         <Route path="/" element={<Home />}></Route>
       </Routes>
     </Router>
