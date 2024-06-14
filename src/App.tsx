@@ -1,17 +1,19 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/home/home.page";
-import Login from "./auth/pages/login/login.page";
 import AdminTeacher from "./pages/adminTeacher/adminTeacher.page";
 import AdminQualifications from "./pages/adminQualifications/adminQualifications.page";
 import AdminCalendar from "./pages/adminCalendar/adminCalendar.page";
 import AdminUpFile from "./pages/adminUpFile/adminUpFile.page";
 import AdminStudents from "./pages/adminStudents/adminStudents.page";
 import AdminCourse from "./pages/adminCourse/adminCourse.page";
+import ForgotPassword from "./auth/pages/forgotPass/forgotPassword.page";
+import Register from "./auth/pages/register/register.pages";
+import Login from "./auth/pages/login/login.page";
 
 import "./App.css";
-import Register from "./auth/pages/register/register.pages";
-import ForgotPassword from "./auth/pages/forgotPass/forgotPassword.page";
+import CreateActivities from "./api/components/activities/create-activities";
+
 
 function App() {
   type teacher = {
@@ -132,6 +134,7 @@ function App() {
           path="/admincourse"
           element={<AdminCourse teacherData={teacherData} />}
         ></Route>
+        <Route path="/Recoveractivities" element={<CreateActivities/>}></Route>
         <Route
           path="/adminstudents"
           element={<AdminStudents teacherData={teacherData} />}
@@ -164,7 +167,7 @@ function App() {
           }
         ></Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/register" element={<Register />}></Route>
+        <Route path="/register" element={<Register/>}></Route>
         <Route path="/forgotpassword" element={<ForgotPassword/>} />
         <Route path="/" element={<Home />}></Route>
       </Routes>

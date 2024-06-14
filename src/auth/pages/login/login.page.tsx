@@ -1,37 +1,32 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "./login.page.css";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios, { AxiosError } from "axios";
+import { AuthContext } from "../../context/auth-context";
+import "./login.page.css";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
- 
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setMessage("");
     try {
-      
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
-        email,
-        password,
-      });
-  
-      console.log("Login response:", response.data);
-  
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, { email, password });
+
       if (response.status === 200) {
         setMessage("User logged in successfully");
-        console.log("User role:", response.data.role);
-
+        login(email);
+        navigate("/", { replace: true });
       } else {
         setMessage("Login failed: " + response.data.message);
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const axiosError = error as AxiosError;
-        console.error("Axios error:", axiosError);
-  
         if (axiosError.response && axiosError.response.status === 401) {
           setMessage("Incorrect credentials. Please check your email and password.");
         } else {
@@ -46,14 +41,14 @@ const Login: React.FC = () => {
   return (
     <div className="login__container">
       <div className="login">
-        <img className='login__logo' src="images/saint-logo.png" alt="Saint College Logo" />
+        <img className="login__logo" src="images/saint-logo.png" alt="Saint College Logo" />
         <div className="login__form-container">
-          <h2 className='login__form-title'>¡Bienvenidos!</h2>
+          <h2 className="login__form-title">¡Bienvenidos!</h2>
           <form className="login__form" onSubmit={handleLogin}>
             <input
               type="email"
-              name='email'
-              placeholder='Correo Electronico'
+              name="email"
+              placeholder="Correo Electronico"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -61,16 +56,15 @@ const Login: React.FC = () => {
             <input
               type="password"
               name="password"
-              placeholder='Contraseña'
+              placeholder="Contraseña"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
             <div>
-            <Link className='login__form-link' to={"/forgotpassword"}>¿Olvidaste tu contraseña?</Link>
-            <Link className='register__form-link' to="/register">Registrarse</Link>
+              <Link className="login__form-link" to={"/forgotpassword"}>¿Olvidaste tu contraseña?</Link>
+              <Link className="register__form-link" to="/register">Registrarse</Link>
             </div>
-
             <input type="submit" value="Ingresar" />
           </form>
           {message && <p>{message}</p>}
