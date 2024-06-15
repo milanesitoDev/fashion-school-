@@ -1,11 +1,9 @@
 import React from 'react'
 
 import Navbar from '../../components/navbar/navbar.component'
+import ArticleCard from '../../components/articleCard/articleCard.components'
 
 import './home.page.css'
-import DateCalendarValue from '../calendar/calendar.page'
-import Slider from '../../components/slider/slider'
-import Gallery from '../../components/gallery/gallery'
 
 const Home: React.FC = () => {
     return(
@@ -17,25 +15,26 @@ const Home: React.FC = () => {
                         <p>Somos los numeros uno en</p>
                         <p className='text__bold'>una escuela de moda México</p>
                     </div>
-                    <div >
-                        <Slider/>
-                        
+                    <div className="header__slider">
+                        <div className="slider__articles-wrapper">
+                            <ArticleCard />
+                            <ArticleCard />
+                            <ArticleCard />
+                        </div>
                     </div>
                 </section>
             </header>
             <section className="gallery">
-              <Gallery/>
+                <ArticleCard />
+                <ArticleCard />
+                <ArticleCard />
+                <ArticleCard />
             </section>
-            <section className="carrousel">
-
-            </section>
-            <section className="calendar">
-                <DateCalendarValue/>
-            </section>
+            <section className="carrousel"></section>
+            <section className="calendar"></section>
             <section className="notices">
                 <img src="images/megaphone.png" alt="Megaphone"/>
             </section>
-    
             <section className="blog">
                 <div className="blog__card">
                     <img src="images/gallery.jpg" alt="Gallery" />

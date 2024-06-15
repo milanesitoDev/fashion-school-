@@ -1,28 +1,18 @@
 import React from "react";
 
-import ProfileCard from "../../components/profileCard/profileCard.component";
 import Navbar from "../../components/navbar/navbar.component";
+import ProfileCard from "../../components/ProfileCard/profileCard.component";
 
 import "./adminStudents.page.css";
 
-type teacher = {
-  name: string;
-  location: string;
-  phone: string;
-  email: string;
-};
-interface AdminStudentsProps {
-  teacherData: teacher;
-}
-
-const AdminStudents: React.FC<AdminStudentsProps> = ({ teacherData }) => {
+const AdminStudents: React.FC = () => {
   return (
     <>
       <Navbar />
       <div className="admin-students__container">
         <aside></aside>
         <main className="admin-students">
-          <ProfileCard teacherData={teacherData} />
+          <ProfileCard />
           <div className="admin-students__info">
             <h2 className="admin-students__name">Nombre de la carrera</h2>
             <ul className="admin-students__list">
