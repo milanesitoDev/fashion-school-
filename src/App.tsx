@@ -12,7 +12,7 @@ import Register from "./auth/pages/register/register.pages";
 import Login from "./auth/pages/login/login.page";
 
 import "./App.css";
-import CreateActivities from "./api/components/activities/create-activities";
+import RetrieveStudents from "./api/components/students/retrieve-students";
 
 
 function App() {
@@ -134,7 +134,7 @@ function App() {
           path="/admincourse"
           element={<AdminCourse teacherData={teacherData} />}
         ></Route>
-        <Route path="/Recoveractivities" element={<CreateActivities/>}></Route>
+        <Route path="/Recoveractivities" element={<RetrieveStudents/>}></Route>
         <Route
           path="/adminstudents"
           element={<AdminStudents teacherData={teacherData} />}

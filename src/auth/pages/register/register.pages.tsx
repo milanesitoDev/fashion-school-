@@ -31,10 +31,10 @@ const Register: React.FC = () => {
     setMessage("");
 
     try {
-      const response = await axios.post<RegisterSuccessResponse>(`${process.env.REACT_APP_API_URL}/users`, {
+      const response = await axios.post<RegisterSuccessResponse>(`http://18.222.67.121/api/users`, {
         name: data.name,
         email: data.email,
-        rol_id: 2,
+        rol_id: 3,
         password: data.password,
       });
 

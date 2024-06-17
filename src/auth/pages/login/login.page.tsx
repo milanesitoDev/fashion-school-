@@ -15,7 +15,7 @@ const Login: React.FC = () => {
     e.preventDefault();
     setMessage("");
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, { email, password });
+      const response = await axios.post(`http://18.222.67.121/api/login`, { email, password });
 
       if (response.status === 200) {
         setMessage("User logged in successfully");

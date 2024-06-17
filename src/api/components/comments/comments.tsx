@@ -15,14 +15,14 @@ interface CommentsResponse {
   data: Comment[];
 }
 
-const Comments: React.FC<{ id: number }> = ({ id }) => {
+const CommentsAppdeam: React.FC<{ id: number }> = ({ id }) => {
   const [comments, setComments] = useState<Comment[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function getUserComments(activityId: number) {
       try {
-        const response = await axios.get<CommentsResponse>(`${process.env.REACT_APP_API_URL}/comments/activity/${activityId}`);
+        const response = await axios.get<CommentsResponse>(`http://18.222.67.121/api/comments/activity/${activityId}`);
         
         if (response.status === 200 && response.data.message === "success") {
           setComments(response.data.data);
@@ -59,4 +59,4 @@ const Comments: React.FC<{ id: number }> = ({ id }) => {
   );
 };
 
-export default Comments;
+export default CommentsAppdeam;
