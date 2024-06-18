@@ -1,26 +1,33 @@
 
-import { Link } from 'react-router-dom'
+
 import './login.page.css'
-import React, { FC, useRef, useState, useEffect, useContext } from 'react';
-import AuthContext from "../../context/AuthProvider";
+import React, { FC, useRef, useState, useEffect } from 'react';
+//import AuthContext from "../../context/AuthProvider";
 import axios from '../../api/axios';
 import  {AxiosError} from "axios";
+import useAuth from '../../hooks/useAuth';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 interface LoginProps {}
 
 
 const LOGIN_URL = '/login';
 
-const Login: FC<LoginProps> = () => {
-    const { setAuth } = useContext(AuthContext);
+export const Login: FC<LoginProps> = () => {
+    const { setAuth } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from: string = location.state?.from?.pathname || "/adminstudents";
     const userRef = useRef<HTMLInputElement>(null);
     const errRef = useRef<HTMLParagraphElement>(null);
 
     const [user, setUser] = useState<string>('');
     const [pwd, setPwd] = useState<string>('');
     const [errMsg, setErrMsg] = useState<string>('');
-    const [success, setSuccess] = useState<boolean>(false);
-
+   
+    //const navigate = useNavigate();
+    //email:'prueba@example.com', password:'cb7327dd'
+    
     useEffect(() => {
         if (userRef.current) {
             userRef.current.focus();
@@ -35,35 +42,23 @@ const Login: FC<LoginProps> = () => {
         e.preventDefault();
 
         try {
-            console.log(JSON.stringify({  'email' : user,
-                'password' : pwd,}))
-           /* const response = await axios.post(LOGIN_URL,
-               // JSON.stringify({ "email":"john@example.com", "password": "password123" }),
-               //{ body: JSON.stringify({ user, pwd }) },
-                //JSON.stringify({ user, pwd }),
-                {params : JSON.stringify({ email:'prueba@example.com', password:'cb7327dd' })},
-                {
-                    
-                    headers: { 'Content-Type': 'application/json', 
-                        'Access-Control-Allow-Origin': '*'
-                    },
-                    withCredentials: true
-               
-                }
-            );*/
+           
+           
             const response = await axios.post(LOGIN_URL,{
                 'email' : user,
                 'password' : pwd,
               });
 
            console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response));
-            const accessToken = response?.data?.accessToken;
-            const roles = response?.data?.roles;
-            setAuth({ user, pwd, roles, accessToken });
+           // const accessToken = response?.data?.accessToken;
+            const roles = response?.data?.role;
+           
+            setAuth({ user, pwd, roles:'admin'});
+            //setAuth({ user, pwd, roles});
             setUser('');
             setPwd('');
-            setSuccess(true);
+            navigate(from, { replace: true });
+            
         } catch (e) {
             const error = e as AxiosError;
             if (error.isAxiosError) {
@@ -78,9 +73,12 @@ const Login: FC<LoginProps> = () => {
                 errRef.current.focus();
             }
         }
+        // {success ? (    ) : null}
     }
 
     return(
+        <>
+       
         <div className="login__container">
             <div className="login">
                 <img className='login__logo' src="images/saint-logo.png" alt="Saint College Logo" />
@@ -135,6 +133,9 @@ const Login: FC<LoginProps> = () => {
                 </div>
             </div>
         </div>
+
+    </>
+
     )
 }
 

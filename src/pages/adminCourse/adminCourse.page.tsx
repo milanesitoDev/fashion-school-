@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useContext, useRef, useState }from "react";
 
 import Navbar from "../../components/navbar/navbar.component";
 import ProfileCard from "../../components/ProfileCard/profileCard.component";
-
+import AuthContext from "../../context/AuthProvider";
 import "./adminCourse.page.css";
 
+
+//interface AuthProviderProps {}
+
+
 const AdminCourse: React.FC = () => {
+ /*
+const value  = useContext(AuthContext);
+const setAuth = useContext(AuthContext);
+//const [success, setSuccess] = useContext(AuthContext);
+const sec = React.useState(value);
+console.log(sec);
+*/
+
   return (
     <>
+    
+  
       <Navbar />
       <div className="admin-course__container">
         <aside></aside>
@@ -24,8 +38,10 @@ const AdminCourse: React.FC = () => {
           </div>
         </main>
       </div>
+     
     </>
   );
+
 };
 
 export default AdminCourse;
