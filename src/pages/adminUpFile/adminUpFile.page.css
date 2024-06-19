@@ -1,173 +1,168 @@
 .admin-upfile {
-  flex-grow: 1;
-  padding: 80px 160px;
-  background-color: var(--bg-color1);
-}
-
-.admin-upfile__info {
-  margin-top: 50px;
-}
-
-.admin-upfile__name {
-  font-size: 2.2em;
-  color: var(--color1);
-}
-
-.admin-upfile__list {
-  display: flex;
-  padding: 18px 8px;
-  list-style: none;
-  gap: 50px;
-  font-size: 1.2em;
-  color: var(--fg-color2);
-}
-
-.list--bold {
-  font-weight: 500;
-  color: var(--fg-color1);
-}
-
-.admin-upfile__month {
-  font-size: 1.2em;
-  font-weight: 500;
-  color: var(--fg-color3);
-  margin: 16px 0;
-}
-
-.admin-upfile__form {
-  display: flex;
-  flex-direction: column;
-  margin-top: 28px;
-  gap: 22px;
-}
-
-.upfile__form-title {
-  font-size: 1.4em;
-  text-align: center;
-  width: 25%;
-  margin-bottom: 12px;
-}
-
-.upfile__form-wapper {
-  display: flex;
-  align-items: center;
-}
-
-.upfile__form-wapper label,
-.upfile__form-wapper span {
-  width: 25%;
-}
-
-.upfile__form-wapper input,
-.upfile__form-wapper textarea {
-  padding: 8px;
-  background-color: transparent;
-  border: 1px solid var(--color1);
-  outline: none;
-  border-radius: 8px;
-}
-
-#course-name {
-  width: 450px;
-}
-
-#course-shortname,
-#course-visibility {
-  width: 180px;
-}
-
-#course-categories {
-  width: 240px;
-}
-
-#course {
-  width: 100px;
-}
-
-.upfile__form-startdate,
-.upfile__form-enddate {
-  display: flex;
-  align-items: center;
-  width: 75%;
-  gap: 8px;
-}
-
-.upfile__form-startdate input:first-child {
-  width: 45px;
-}
-
-.upfile__form-startdate input:nth-child(2) {
-  width: 100px;
-}
-
-.upfile__form-startdate input:nth-child(3) {
-  width: 60px;
-}
-
-.upfile__form-startdate input:nth-child(4) {
-  width: 45px;
-}
-
-.upfile__form-startdate input:nth-child(5) {
-  width: 45px;
-}
-
-.upfile__form-enddate input:first-child {
-  width: auto;
-  margin-right: 40px;
-}
-
-.upfile__form-enddate input:nth-child(2) {
-  width: 45px;
-}
-
-.upfile__form-enddate input:nth-child(3) {
-  width: 100px;
-}
-
-.upfile__form-enddate input:nth-child(4) {
-  width: 60px;
-}
-
-.upfile__form-enddate input:nth-child(5) {
-  width: 45px;
-}
-
-.upfile__form-enddate input:nth-child(6) {
-  width: 45px;
-}
-
-.upfile__form-startdate input,
-.upfile__form-enddate input {
-  width: 40px;
-}
-
-#course-id {
-  width: 110px;
-}
-
-.upfile__form-wapper:last-child {
-  flex-direction: column;
-  align-items: start;
-}
-
-.upfile__form-description {
-  margin-top: 16px;
-  width: 100%;
-  display: flex;
-}
-
-.upfile__description-title {
-  font-size: 1.3em;
-}
-
-.upfile__form-description textarea {
-  resize: none;
-  width: 600px !important;
-  height: 180px !important;
-}
-
-.cal-icon {
-  color: var(--fg-color1);
-  font-size: 1.2em;
-}
+    flex-grow: 1;
+    padding: 80px 160px;
+    background-color: #f0f0f0;
+  }
+  
+  .admin-upfile__info {
+    margin-top: 50px;
+  }
+  
+  .admin-upfile__name {
+    font-size: 2.2em;
+    color: #002b3b;
+  }
+  
+  .admin-upfile__list {
+    display: flex;
+    padding: 18px 8px;
+    list-style: none;
+    gap: 50px;
+    font-size: 1.2em;
+    color: #606060;
+  }
+  
+  .list--bold {
+    font-weight: 500;
+    color: #0a0a0a;
+  }
+  
+  .admin-upfile__month {
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #303030;
+    margin: 16px 0;
+  }
+  
+  .admin-upfile__form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 28px;
+    gap: 22px;
+  }
+  
+  .upfile__form-title {
+    font-size: 1.4em;
+    text-align: center;
+    width: 25%;
+    margin-bottom: 12px;
+  }
+  
+  .upfile__form-wapper {
+    display: flex;
+    align-items: center;
+  }
+  
+  .upfile__form-wapper label,
+  .upfile__form-wapper span {
+    width: 25%;
+  }
+  
+  .upfile__form-wapper input,
+  .upfile__form-wapper textarea {
+    padding: 6px;
+    background-color: transparent;
+    border: 1px solid #002b3b;
+    outline: none;
+    border-radius: 6px;
+  }
+  
+  #course-name {
+    width: 450px;
+  }
+  
+  #course-shortname,
+  #course-visibility {
+    width: 180px;
+  }
+  
+  #course-categories {
+    width: 240px;
+  }
+  
+  #course {
+    width: 100px;
+  }
+  
+  .upfile__form-startdate,
+  .upfile__form-enddate {
+    display: flex;
+    width: 75%;
+    gap: 8px;
+  }
+  
+  .upfile__form-startdate input:first-child {
+    width: 45px;
+  }
+  
+  .upfile__form-startdate input:nth-child(2) {
+    width: 100px;
+  }
+  
+  .upfile__form-startdate input:nth-child(3) {
+    width: 60px;
+  }
+  
+  .upfile__form-startdate input:nth-child(4) {
+    width: 45px;
+  }
+  
+  .upfile__form-startdate input:nth-child(5) {
+    width: 45px;
+  }
+  
+  .upfile__form-enddate input:first-child {
+    width: auto;
+    margin-right: 40px;
+  }
+  
+  .upfile__form-enddate input:nth-child(2) {
+    width: 45px;
+  }
+  
+  .upfile__form-enddate input:nth-child(3) {
+    width: 100px;
+  }
+  
+  .upfile__form-enddate input:nth-child(4) {
+    width: 60px;
+  }
+  
+  .upfile__form-enddate input:nth-child(5) {
+    width: 45px;
+  }
+  
+  .upfile__form-enddate input:nth-child(6) {
+    width: 45px;
+  }
+  
+  .upfile__form-startdate input,
+  .upfile__form-enddate input {
+    width: 40px;
+  }
+  
+  #course-id {
+    width: 110px;
+  }
+  
+  .upfile__form-wapper:last-child {
+    flex-direction: column;
+    align-items: start;
+  }
+  
+  .upfile__form-description {
+    margin-top: 16px;
+    width: 100%;
+    display: flex;
+  }
+  
+  .upfile__description-title {
+    font-size: 1.3em;
+  }
+  
+  .upfile__form-description textarea {
+    resize: none;
+    width: 600px !important;
+    height: 180px !important;
+  }
+  

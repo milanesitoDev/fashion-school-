@@ -2,23 +2,14 @@ import Student from "../student/student.component";
 
 import "./students.component.css";
 
-type student = {
-  name: string;
-};
-
-interface StudentsProps {
-  students: student[];
-}
-
-const Students: React.FC<StudentsProps> = ({ students }) => {
+const Students: React.FC = () => {
   return (
     <div className="students">
       <div className="students__wrapper">
         <div className="wrapper__text">
           <h3 className="students__title">Estudiantes</h3>
           <p className="students__text">
-            Tienes <span className="text-number">{students.length}</span>
-            <span className="text-students"> estudiantes</span>
+            Tienes <span className="text-number">5</span> estudiantes
           </p>
         </div>
         <div className="wrapper__btn">
@@ -26,9 +17,10 @@ const Students: React.FC<StudentsProps> = ({ students }) => {
         </div>
       </div>
       <div className="students__list">
-        {students.map((student) => {
-          return <Student student={student} />;
-        })}
+        <Student />
+        <Student />
+        <Student />
+        <Student />
       </div>
       <button className="students__btn">Ver mas</button>
     </div>

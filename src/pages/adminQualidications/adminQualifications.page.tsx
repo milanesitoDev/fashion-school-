@@ -1,39 +1,18 @@
 import React from "react";
 
-import ProfileCard from "../../components/profileCard/profileCard.component";
 import Navbar from "../../components/navbar/navbar.component";
+import ProfileCard from "../../components/ProfileCard/profileCard.component";
 
 import "./adminQualifications.page.css";
 
-type teacher = {
-  name: string;
-  location: string;
-  phone: string;
-  email: string;
-};
-
-type qualifications = {
-  name: string;
-  username: string;
-  email: string;
-  value: number[];
-};
-interface AdminQualificationsProps {
-  teacherData: teacher;
-  qualificationsData: qualifications[];
-}
-
-const AdminQualifications: React.FC<AdminQualificationsProps> = ({
-  teacherData,
-  qualificationsData,
-}) => {
+const AdminQualifications: React.FC = () => {
   return (
     <>
       <Navbar />
       <div className="admin-qualifications__container">
         <aside></aside>
         <main className="admin-qualifications">
-          <ProfileCard teacherData={teacherData} />
+          <ProfileCard />
           <div className="admin-qualifications__info">
             <h2 className="admin-qualifications__name">Nombre de la carrera</h2>
             <ul className="admin-qualifications__list">
@@ -61,26 +40,42 @@ const AdminQualifications: React.FC<AdminQualificationsProps> = ({
             </form>
           </div>
           <table className="admin-qualifications__table">
-            <thead>
-              <tr>
-                <th>Nombre / Apellido</th>
-                <th>Nombre de usuario</th>
-                <th>Dirección de correo</th>
-                <th>Nota del curso</th>
-              </tr>
-            </thead>
-            <tbody>
-              {qualificationsData.map((qualification) => {
-                return (
-                  <tr>
-                    <td>{qualification.name}</td>
-                    <td>@{qualification.username}</td>
-                    <td>{qualification.email}</td>
-                    <td>{`${qualification.value[0]}/${qualification.value[1]}`}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
+            <tr>
+              <th>Nombre / Apellido</th>
+              <th>Nombre de usuario</th>
+              <th>Direccion de correo</th>
+              <th>Nota del curso</th>
+            </tr>
+            <tr>
+              <td>Maria Guadalupe Tineo</td>
+              <td>@Guadatineo</td>
+              <td>Guadalupetineo@gmail.com</td>
+              <td>18/20</td>
+            </tr>
+            <tr>
+              <td>Maria Guadalupe Tineo</td>
+              <td>@Guadatineo</td>
+              <td>Guadalupetineo@gmail.com</td>
+              <td>18/20</td>
+            </tr>
+            <tr>
+              <td>Maria Guadalupe Tineo</td>
+              <td>@Guadatineo</td>
+              <td>Guadalupetineo@gmail.com</td>
+              <td>18/20</td>
+            </tr>
+            <tr>
+              <td>Maria Guadalupe Tineo</td>
+              <td>@Guadatineo</td>
+              <td>Guadalupetineo@gmail.com</td>
+              <td>18/20</td>
+            </tr>
+            <tr>
+              <td>Maria Guadalupe Tineo</td>
+              <td>@Guadatineo</td>
+              <td>Guadalupetineo@gmail.com</td>
+              <td>18/20</td>
+            </tr>
           </table>
         </main>
       </div>
