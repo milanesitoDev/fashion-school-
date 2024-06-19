@@ -1,10 +1,9 @@
-
 import Navbar from "../../components/navbar/navbar.component";
 import ProfileCard from "../../components/profileCard/profileCard.component";
+import Students from "../../components/students/students.component";
 import ChatMessages from "../../components/chatMessages/chatMessages.component";
 
 import "./adminTeacher.page.css";
-import Students from "../../components/students/students.component";
 
 type teacher = {
   name: string;
