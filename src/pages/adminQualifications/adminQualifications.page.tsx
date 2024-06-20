@@ -1,6 +1,6 @@
 import React from "react";
 
-import ProfileCard from "../../components/profileCard/profileCard.component";
+import ProfileCard  from "../../components/profileCard/profileCard.component";
 import Navbar from "../../components/navbar/navbar.component";
 
 import "./adminQualifications.page.css";

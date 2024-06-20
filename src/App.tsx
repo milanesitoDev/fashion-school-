@@ -8,23 +8,29 @@ import Login from "./auth/pages/login/login.page";
 import Layout from './components/RouteProtected/Layout';
 import Missing from './components/RouteProtected/Missing';
 import RequireAuth from './components/RouteProtected/RequireAuth';
-import { Routes, Route } from 'react-router-dom';
+import { Navigate,Routes, Route } from 'react-router-dom';
 
 import "./App.css";
 import Unauthorized from './components/RouteProtected/Unauthorized';
 import AdminStudents from './pages/adminStudents/adminStudents.page';
 import AdminCourse from './pages/adminCourse/adminCourse.page';
+import AdminUpFile from './pages/adminUpFile/adminUpFile.page';
+import AdminTeacher from './pages/adminTeacher/adminTeacher.page';
+import Register from './auth/pages/register/register.pages';
 
 
 
 interface Roles {
   Admin: string;  
-  Estudent: string;
+  Student: string;
+  Teacher: string;
 }
 const ROLES: Roles = {
   Admin: "admin",
-  Estudent: "editor",
+  Student: "student",
+  Teacher: "teacher",
 };
+
 
 
 
@@ -46,6 +52,32 @@ const App: FC = () => {
     email: "juancarlosabc@mail.com",
   };
 
+ 
+  
+  type student = {
+    name: string;
+  };
+  const teacherstudent: student = {
+    name: "Juan Carlos",
+  };
+  type message = {
+    text: string;
+    time: Date;
+  };
+
+  type chat = {
+    chat: string;
+    messages: message[];
+  };
+  const teacherschat: chat = {
+    chat: "Juan Carlos",
+    messages:[],
+  };
+ 
+  /*
+  cb7327dd
+   */
+
 
 
   return (
@@ -55,23 +87,30 @@ const App: FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />    
         <Route path="/../unauthorized" element={<Unauthorized/>}/>
+        <Route path="/register" element={<Register/>}/>
        
 
 
         {/* Routes protected */}
-        <Route element={<RequireAuth allowedRoles={[ROLES.Admin]}  />}>
+        <Route element={<RequireAuth allowedRoles={[ROLES.Student]}  />}>
         <Route
           path="/adminstudents"
           element={<AdminStudents teacherData={teacherData} />}
         ></Route>
         </Route>
-        <Route element={<RequireAuth allowedRoles={[ROLES.Estudent]} />}>
-       
-        <Route
-          path="/admincourse"
-          element={<AdminCourse teacherData={teacherData} />}
-        ></Route>
 
+        <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+          <Route path="/admintupfile" element={<AdminUpFile teacherData={teacherData} />}
+          ></Route>
+           <Route path="/" element={<Navigate to="/billing" />} />
+           </Route>
+           
+        <Route element={<RequireAuth allowedRoles={[ROLES.Teacher]} />}>
+          <Route
+              path="/adminteacher" element={<AdminTeacher teacherData={teacherData} students={[teacherstudent]} messages={[teacherschat]} />}>
+            </Route>
+            <Route path="/admincurse" element={<AdminCourse teacherData={teacherData} />}
+          ></Route>
         </Route>
         {/*<Route element={<RequireAuth allowedRoles={[ROLES.Estudent, ROLES.Admin]} />}>
           <Route path="/admincalendar" element={<AdminCalendar />} />

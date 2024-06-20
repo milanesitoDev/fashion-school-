@@ -1,7 +1,6 @@
 import Navbar from "../../components/navbar/navbar.component";
 import ProfileCard from "../../components/profileCard/profileCard.component";
 import Students from "../../components/students/students.component";
-import ChatMessages from "../../components/chatMessages/chatMessages.component";
 
 import "./adminTeacher.page.css";
 
@@ -31,7 +30,7 @@ interface AdminTeacherProps {
   students: student[];
   messages: chat[];
 }
-
+// <Students students={[students]} /> <ChatMessages messages={messages} />
 const AdminTeacher: React.FC<AdminTeacherProps> = ({
   teacherData,
   students,
@@ -45,8 +44,8 @@ const AdminTeacher: React.FC<AdminTeacherProps> = ({
         <main className="admin-teacher">
           <ProfileCard teacherData={teacherData} />
           <div className="admin-teacher__wrapper">
-            <Students students={students} />
-            <ChatMessages messages={messages} />
+            <Students  />
+            
           </div>
         </main>
       </div>

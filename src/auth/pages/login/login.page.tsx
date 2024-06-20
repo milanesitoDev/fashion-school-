@@ -13,7 +13,7 @@ export const Login: FC<LoginProps> = () => {
     const { setAuth } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
-    const from: string = location.state?.from?.pathname || "/adminstudents";
+   
     const userRef = useRef<HTMLInputElement>(null);
     const errRef = useRef<HTMLParagraphElement>(null);
 
@@ -43,8 +43,23 @@ export const Login: FC<LoginProps> = () => {
             console.log(JSON.stringify(response?.data));
             // const accessToken = response?.data?.accessToken;
             const roles = response?.data?.role;
+            const from: string = routes_api(roles);
+            
+            function routes_api(param: string): string {
+                console.log(param);
+                switch(param) {                    
+                    case 'admin':
+                    return location.state?.from?.pathname || "/admintupfile"; //admintupfile
+                    case 'student':
+                    return location.state?.from?.pathname || "/adminstudents";
+                    case 'teacher':
+                    return location.state?.from?.pathname || "/adminteacher"; 
+                  default:
+                    return location.state?.from?.pathname || "/login";
+                }
+              }
            
-            setAuth({ user, pwd, roles: 'admin' });
+            setAuth({ user, pwd, roles });
             setUser('');
             setPwd('');
             navigate(from, { replace: true });
