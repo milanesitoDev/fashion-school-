@@ -1,26 +1,31 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-interface AddStudent {
-  user_id: number;
-  course_id: number;
-  id_rol: number;
-}
-const STUDENTS_URL = '/students';
+import './create-schedule.css'
 
-const AddNewStudents: React.FC = () => {
-  const [student, setStudent] = useState<AddStudent>({
-    user_id: 0,
-    course_id: 1,
-    id_rol: 3 // Establece id_rol a 3 por defecto para nuevos estudiantes
+const CREATE_SCHEDULE_URL = '/schedules';
+
+interface Schedule {
+  activity_id: number;
+  teacher_id: number;
+  start_hour: string;
+  end_hour: string;
+}
+
+const CreateSchedule: React.FC = () => {
+  const [schedule, setSchedule] = useState<Schedule>({
+    activity_id: 1,
+    teacher_id: 1,
+    start_hour: "",
+    end_hour: "",
   });
   const [message, setMessage] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setStudent((prevStudent) => ({
-      ...prevStudent,
-      [name]: Number(value),
+    setSchedule((prevSchedule) => ({
+      ...prevSchedule,
+      [name]: value,
     }));
   };
 
@@ -29,20 +34,20 @@ const AddNewStudents: React.FC = () => {
     setMessage("");
 
     try {
-      const response = await axios.post(STUDENTS_URL, student);
+      const response = await axios.post(CREATE_SCHEDULE_URL, schedule);
 
       if (response.status === 201) {
-        setMessage("Student added successfully");
+        setMessage("Schedule created successfully");
       } else {
-        setMessage("Failed to add student");
+        setMessage("Failed to create schedule");
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response) {
           if (error.response.status === 400) {
             setMessage("Validation error: " + JSON.stringify(error.response.data.errors));
-          } else if (error.response.status === 404) {
-            setMessage("Student not found");
+          } else if (error.response.status === 500) {
+            setMessage("Internal server error: " + error.response.data.errors);
           } else {
             setMessage("An error occurred: " + error.message);
           }
@@ -57,15 +62,15 @@ const AddNewStudents: React.FC = () => {
 
   return (
     <div>
-      <h2>Add New Student</h2>
+      <h2>Create New Schedule</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>
-            User ID:
+            Activity ID:
             <input
               type="number"
-              name="user_id"
-              value={student.user_id}
+              name="activity_id"
+              value={schedule.activity_id}
               onChange={handleChange}
               required
             />
@@ -73,35 +78,45 @@ const AddNewStudents: React.FC = () => {
         </div>
         <div>
           <label>
-            Course ID:
+            Teacher ID:
             <input
               type="number"
-              name="course_id"
-              value={student.course_id}
+              name="teacher_id"
+              value={schedule.teacher_id}
               onChange={handleChange}
               required
-              disabled // Curso Laravel con ID 1 es fijo
             />
           </label>
         </div>
         <div>
           <label>
-            Role ID:
+            Start Hour:
             <input
-              type="number"
-              name="id_rol"
-              value={student.id_rol}
+              type="datetime-local"
+              name="start_hour"
+              value={schedule.start_hour}
               onChange={handleChange}
               required
-              disabled // id_rol es fijo para nuevos estudiantes
             />
           </label>
         </div>
-        <button type="submit">Add Student</button>
+        <div>
+          <label>
+            End Hour:
+            <input
+              type="datetime-local"
+              name="end_hour"
+              value={schedule.end_hour}
+              onChange={handleChange}
+              required
+            />
+          </label>
+        </div>
+        <button type="submit">Create Schedule</button>
       </form>
       {message && <p>{message}</p>}
     </div>
   );
 };
 
-export default AddNewStudents;
+export default CreateSchedule;

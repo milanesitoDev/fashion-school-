@@ -17,6 +17,12 @@ import AdminCourse from './pages/adminCourse/adminCourse.page';
 import AdminUpFile from './pages/adminUpFile/adminUpFile.page';
 import AdminTeacher from './pages/adminTeacher/adminTeacher.page';
 import Register from './auth/pages/register/register.pages';
+import ForgotPassword from './auth/pages/forgotPass/forgotPassword.page';
+import RetrieveIdStudent from './api/components/students/retrieve-id-students';
+import AddNewStudents from './api/components/students/add-new-students';
+import DeleteStudent from './api/components/students/delate-students';
+import GetStudentsByCourse from './api/components/students/get-students-by-course';
+import CreateSchedule from './api/components/schedules/create-schedule';
 
 
 
@@ -88,7 +94,8 @@ const App: FC = () => {
         <Route path="/login" element={<Login />} />    
         <Route path="/../unauthorized" element={<Unauthorized/>}/>
         <Route path="/register" element={<Register/>}/>
-       
+        <Route path="/forgotpassword" element={<ForgotPassword/>}/>
+        <Route path="/RetrieveIdStudent" element={<CreateSchedule/>}/>
 
 
         {/* Routes protected */}

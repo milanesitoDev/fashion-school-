@@ -6,7 +6,7 @@ import "./home.page.css";
 import Slider from "../../components/slider/slider";
 import Gallery from "../../components/gallery/gallery";
 import DateCalendarValue from "../calendar/calendar.page";
-import SliderTeam from "../../components/slider/slider-team";
+import imgEvent from '/images/image 120.png'
 
 const Home: React.FC = () => {
   return (
@@ -32,7 +32,17 @@ const Home: React.FC = () => {
       </section>
 
       <section className="calendar">
-        <DateCalendarValue />
+      <div className="header__text__calendar">
+            <p className="text__bold__calendar">Eventos</p>
+            <p className="text__calendar">Elaboraremos un proyecto académico basado en la <br/>Semana de la Moda de Roma. Esto podría incluir un <br/>ensayo, una presentación o incluso la creación de <br/> una colección de moda inspirada en lo que has visto y aprendido.</p>
+          </div>
+      <div className="eventCalendar">
+        
+                <DateCalendarValue />
+
+        <img src={imgEvent} alt="" className="imgEvent" />
+      </div>
+
       </section>
       <section className="notices">
         <div className="notices_container">
@@ -44,15 +54,12 @@ const Home: React.FC = () => {
       <section className="blog">
                 <div className="blog__card">
                     <img src="images/gallery.jpg" alt="Gallery" />
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis expedita debitis sit at voluptates provident corrupti, quo neque culpa vitae id deleniti accusantium. Excepturi reiciendis ad repellat tempora, ipsam quis!</p>
                 </div>
                 <div className="blog__card">
                     <img src="images/gallery.jpg" alt="Gallery" />
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis expedita debitis sit at voluptates provident corrupti, quo neque culpa vitae id deleniti accusantium. Excepturi reiciendis ad repellat tempora, ipsam quis!</p>
                 </div>
                 <div className="blog__card">
                     <img src="images/gallery.jpg" alt="Gallery" />
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis expedita debitis sit at voluptates provident corrupti, quo neque culpa vitae id deleniti accusantium. Excepturi reiciendis ad repellat tempora, ipsam quis!</p>
                 </div>
             </section>
 

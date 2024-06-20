@@ -1,7 +1,8 @@
 .container__calendar{
     margin-left: 97px !important;
     width:320px !important;
-    border-radius: 8px;
     margin: 10px;
+    height: 300px;
+    margin-top: 60px;
     background-color: aliceblue;
 }

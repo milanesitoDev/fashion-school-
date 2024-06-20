@@ -4,6 +4,7 @@
     align-items: center;
     background-color: #002b3b;
     padding: 16px 76px;
+    z-index: 1000;
   }
   
   .navbar__logo img {
