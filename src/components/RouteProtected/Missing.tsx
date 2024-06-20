@@ -5,9 +5,9 @@ const Missing: FC = () => {
     return (
         <article style={{ padding: "100px" }}>
             <h1>Oops!</h1>
-            <p>Page Not Found</p>
+            <p>Parece que no tienes suficientes privilegios para acceder a esta sección</p>
             <div className="flexGrow">
-                <Link to="/">Visit Our Homepage</Link>
+                <Link to="/login">Iniciar sesión</Link>
             </div>
         </article>
     );

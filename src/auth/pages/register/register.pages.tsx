@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
+import axios from '../../../api/axios';
 import "./register.page.css";
 
 interface RegisterSuccessResponse {
@@ -27,14 +28,16 @@ const Register: React.FC = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>();
   const [message, setMessage] = React.useState("");
 
-  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+  const onSubmit: SubmitHandler<IFormInput> = async (data:any) => {
     setMessage("");
 
+    const LOGIN_URL = '/users';
+
     try {
-      const response = await axios.post<RegisterSuccessResponse>(`${process.env.REACT_APP_API_URL}/users`, {
+      const response = await axios.post<RegisterSuccessResponse>(LOGIN_URL, {
         name: data.name,
         email: data.email,
-        rol_id: 2,
+        rol_id: 3,
         password: data.password,
       });
 
@@ -43,8 +46,9 @@ const Register: React.FC = () => {
       if (response.status === 201) {
         setMessage("User registered successfully");
       }
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
+    } catch (e) {
+      const error = e as AxiosError;
+      if (error.isAxiosError) {
         const axiosError = error as AxiosError<RegisterErrorResponse>;
         console.error("Axios error:", axiosError);
 
@@ -106,4 +110,3 @@ const Register: React.FC = () => {
 }
 
 export default Register;
-

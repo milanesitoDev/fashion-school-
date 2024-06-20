@@ -31,7 +31,7 @@ export const SchoolRoutes: React.FC = () => {
             path="/students"
             element={<AdminStudents teacherData={teacherData} />}
           />
-
+          
           <Route
             path="/teachers"
             element={<AdminTeacher teacherData={teacherData} />}

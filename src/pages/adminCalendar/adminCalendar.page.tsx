@@ -1,9 +1,10 @@
 import React from "react";
 
 import Navbar from "../../components/navbar/navbar.component";
-import ProfileCard from "../../components/ProfileCard/profileCard.component";
 
 import "./adminCalendar.page.css";
+import ProfileCard from "../../components/profileCard/profileCard.component";
+import CalendarFull from "../calendar/calendar-full";
 
 const AdminCalendar: React.FC = () => {
   return (
@@ -21,6 +22,7 @@ const AdminCalendar: React.FC = () => {
               <li className="list--bold">Calificaciones</li>
             </ul>
             <p className="admin-calendar__month">mayo 2024</p>
+            <CalendarFull/>
           </div>
         </main>
       </div>

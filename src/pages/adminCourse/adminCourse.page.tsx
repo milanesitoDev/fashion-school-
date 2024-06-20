@@ -1,32 +1,28 @@
-import React, { useContext, useRef, useState }from "react";
+import React from "react";
 
-import Navbar from "../../components/navbar/navbar.component";
 import ProfileCard from "../../components/ProfileCard/profileCard.component";
-import AuthContext from "../../context/AuthProvider";
+import Navbar from "../../components/navbar/navbar.component";
+
 import "./adminCourse.page.css";
 
+type teacher = {
+  name: string;
+  location: string;
+  phone: string;
+  email: string;
+};
+interface AdminCourseProps {
+  teacherData: teacher;
+}
 
-//interface AuthProviderProps {}
-
-
-const AdminCourse: React.FC = () => {
- /*
-const value  = useContext(AuthContext);
-const setAuth = useContext(AuthContext);
-//const [success, setSuccess] = useContext(AuthContext);
-const sec = React.useState(value);
-console.log(sec);
-*/
-
+const AdminCourse: React.FC<AdminCourseProps> = ({ teacherData }) => {
   return (
     <>
-    
-  
       <Navbar />
       <div className="admin-course__container">
         <aside></aside>
         <main className="admin-course">
-          <ProfileCard />
+          <ProfileCard teacherData={teacherData} />
           <div className="admin-course__info">
             <h2 className="admin-course__name">Nombre de la carrera</h2>
             <ul className="admin-course__list">
@@ -38,10 +34,8 @@ console.log(sec);
           </div>
         </main>
       </div>
-     
     </>
   );
-
 };
 
 export default AdminCourse;

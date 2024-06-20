@@ -1,0 +1,20 @@
+.swiper {
+    width: 400px;
+    height: 200px;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 10px;
+  
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-slide img {
+    width: 400px;
+    display: block;
+    object-fit: cover;
+  }

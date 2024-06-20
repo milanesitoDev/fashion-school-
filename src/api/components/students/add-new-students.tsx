@@ -1,25 +1,23 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-interface AddComment {
-  activity_id: number;
+interface AddStudent {
   user_id: number;
-  comment: string;
+  course_id: number;
 }
 
-const AddComment: React.FC = () => {
-  const [commentData, setCommentData] = useState<AddComment>({
-    activity_id: 1, // ID de la actividad inicial
-    user_id: 20, // ID del usuario inicial (estudiante)
-    comment: "",
+const AddNewStudents: React.FC = () => {
+  const [student, setStudent] = useState<AddStudent>({
+    user_id: 0,
+    course_id: 1, // Curso Laravel con ID 1
   });
   const [message, setMessage] = useState<string>("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setCommentData((prevComment) => ({
-      ...prevComment,
-      [name]: value,
+    setStudent((prevStudent) => ({
+      ...prevStudent,
+      [name]: Number(value),
     }));
   };
 
@@ -28,12 +26,12 @@ const AddComment: React.FC = () => {
     setMessage("");
 
     try {
-      const response = await axios.post('http://18.222.67.121/api/comments', commentData);
+      const response = await axios.post('http://18.222.67.121/api/students', student);
 
       if (response.status === 201) {
-        setMessage("Comment added successfully");
+        setMessage("Student added successfully");
       } else {
-        setMessage("Failed to add comment");
+        setMessage("Failed to add student");
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -41,7 +39,7 @@ const AddComment: React.FC = () => {
           if (error.response.status === 400) {
             setMessage("Validation error: " + JSON.stringify(error.response.data.errors));
           } else if (error.response.status === 404) {
-            setMessage("Activity not found");
+            setMessage("Student not found");
           } else {
             setMessage("An error occurred: " + error.message);
           }
@@ -56,27 +54,15 @@ const AddComment: React.FC = () => {
 
   return (
     <div>
-      <h2>Add Comment</h2>
+      <h2>Add New Student</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Activity ID:
-            <input
-              type="number"
-              name="activity_id"
-              value={commentData.activity_id}
-              onChange={handleChange}
-              required
-            />
-          </label>
-        </div>
         <div>
           <label>
             User ID:
             <input
               type="number"
               name="user_id"
-              value={commentData.user_id}
+              value={student.user_id}
               onChange={handleChange}
               required
             />
@@ -84,20 +70,22 @@ const AddComment: React.FC = () => {
         </div>
         <div>
           <label>
-            Comment:
-            <textarea
-              name="comment"
-              value={commentData.comment}
+            Course ID:
+            <input
+              type="number"
+              name="course_id"
+              value={student.course_id}
               onChange={handleChange}
               required
+              disabled // Curso Laravel con ID 1 es fijo
             />
           </label>
         </div>
-        <button type="submit">Add Comment</button>
+        <button type="submit">Add Student</button>
       </form>
       {message && <p>{message}</p>}
     </div>
   );
 };
 
-export default AddComment;
+export default AddNewStudents;

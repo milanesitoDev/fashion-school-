@@ -5,12 +5,22 @@ import ProfileCard from "../../components/ProfileCard/profileCard.component";
 
 import "./adminUpFile.page.css";
 
-const AdminUpFile: React.FC = () => {
+type teacher = {
+  name: string;
+  location: string;
+  phone: string;
+  email: string;
+};
+interface AdminUpFileProps {
+  teacherData: teacher;
+}
+
+const AdminUpFile: React.FC<AdminUpFileProps> = ({ teacherData }) => {
   return (
     <>
       <Navbar />
       <main className="admin-upfile">
-        <ProfileCard />
+        <ProfileCard teacherData={teacherData} />
         <div className="admin-upfile__info">
           <h2 className="admin-upfile__name">Nombre de la carrera</h2>
           <ul className="admin-upfile__list">
@@ -68,6 +78,7 @@ const AdminUpFile: React.FC = () => {
               <input type="number" required />
               <input type="number" required />
               <input type="number" required />
+              <i className="cal-icon bx bxs-calendar"></i>
             </div>
           </div>
           <div className="upfile__form-wapper">
@@ -81,6 +92,7 @@ const AdminUpFile: React.FC = () => {
               <input type="number" required />
               <input type="number" required />
               <input type="number" required />
+              <i className="cal-icon bx bxs-calendar-event"></i>
             </div>
           </div>
           <div className="upfile__form-wapper">

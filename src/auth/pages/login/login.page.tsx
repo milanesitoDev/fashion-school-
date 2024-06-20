@@ -1,94 +1,147 @@
-import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios, { AxiosError } from "axios";
-import { AuthContext } from "../../context/auth-context";
-import "./login.page.css";
+import './login.page.css';
+import React, { FC, useRef, useState, useEffect } from 'react';
+import axios from '../../../api/axios';
+import { AxiosError } from "axios";
+import useAuth from '../../../hooks/useAuth';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
-const Login: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
-  const { login } = useContext(AuthContext);
-  const navigate = useNavigate();
+interface LoginProps {}
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setMessage("");
-    try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, { email, password });
+const LOGIN_URL = '/login';
 
-      if (response.status === 200) {
-        setMessage("User logged in successfully");
-        login(email);
-        navigate("/", { replace: true });
-      } else {
-        setMessage("Login failed: " + response.data.message);
-      }
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        const axiosError = error as AxiosError;
-        if (axiosError.response && axiosError.response.status === 401) {
-          setMessage("Incorrect credentials. Please check your email and password.");
-        } else {
-          setMessage("An error occurred: " + axiosError.message);
+export const Login: FC<LoginProps> = () => {
+    const { setAuth } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+   
+    const userRef = useRef<HTMLInputElement>(null);
+    const errRef = useRef<HTMLParagraphElement>(null);
+
+    const [user, setUser] = useState<string>('');
+    const [pwd, setPwd] = useState<string>('');
+    const [errMsg, setErrMsg] = useState<string>('');
+   
+    useEffect(() => {
+        if (userRef.current) {
+            userRef.current.focus();
         }
-      } else {
-        setMessage("An unexpected error occurred");
-      }
-    }
-  };
+    }, []);
 
-  return (
-    <div className="login__container">
-      <div className="login">
-        <img className="login__logo" src="images/saint-logo.png" alt="Saint College Logo" />
-        <div className="login__form-container">
-          <h2 className="login__form-title">¡Bienvenidos!</h2>
-          <form className="login__form" onSubmit={handleLogin}>
-            <input
-              type="email"
-              name="email"
-              placeholder="Correo Electronico"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="Contraseña"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <div>
-              <Link className="login__form-link" to={"/forgotpassword"}>¿Olvidaste tu contraseña?</Link>
-              <Link className="register__form-link" to="/register">Registrarse</Link>
+    useEffect(() => {
+        setErrMsg('');
+    }, [user, pwd]);
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.post(LOGIN_URL, {
+                'email': user,
+                'password': pwd,
+            });
+
+            console.log(JSON.stringify(response?.data));
+            // const accessToken = response?.data?.accessToken;
+            const roles = response?.data?.role;
+            const from: string = routes_api(roles);
+            
+            function routes_api(param: string): string {
+                console.log(param);
+                switch(param) {                    
+                    case 'admin':
+                    return location.state?.from?.pathname || "/admintupfile"; //admintupfile
+                    case 'student':
+                    return location.state?.from?.pathname || "/adminstudents";
+                    case 'teacher':
+                    return location.state?.from?.pathname || "/adminteacher"; 
+                  default:
+                    return location.state?.from?.pathname || "/login";
+                }
+              }
+           
+            setAuth({ user, pwd, roles });
+            setUser('');
+            setPwd('');
+            navigate(from, { replace: true });
+            
+        } catch (e) {
+            const error = e as AxiosError;
+            if (error.isAxiosError) {
+                if (error.response) {
+                    if (error.response.status === 400) {
+                        setErrMsg('Missing Username or Password');
+                    } else if (error.response.status === 401) {
+                        setErrMsg('Unauthorized');
+                    } else {
+                        setErrMsg('An error occurred: ' + error.message);
+                    }
+                } else {
+                    setErrMsg('An error occurred: ' + error.message);
+                }
+            } else {
+                setErrMsg('An unexpected error occurred');
+            }
+
+            if (errRef.current) {
+                errRef.current.focus();
+            }
+        }
+    }
+
+    return (
+        <div className="login__container">
+            <div className="login">
+                <img className="login__logo" src="images/saint-logo.png" alt="Saint College Logo" />
+                <div className="login__form-container">
+                    <h2 className="login__form-title">¡Bienvenidos!</h2>
+                    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">
+                        {errMsg}
+                    </p>
+                    <form className="login__form" onSubmit={handleSubmit}>
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Correo Electronico"
+                            required
+                            value={user}
+                            onChange={(e) => setUser(e.target.value)}
+                            ref={userRef}
+                        />
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Contraseña"
+                            required
+                            value={pwd}
+                            onChange={(e) => setPwd(e.target.value)}
+                        />
+                        <div>
+                            <Link className="login__form-link" to={"/forgotpassword"}>¿Olvidaste tu contraseña?</Link>
+                            <Link className="register__form-link" to="/register">Registrarse</Link>
+                        </div>
+                        <input type="submit" value="Ingresar" />
+                    </form>
+                </div>
+                <div className="login__links">
+                    <div className="login__link">
+                        <img src="images/google-icon.png" alt="Google Icon" />
+                        <p>Ingresar con e-mail</p>
+                    </div>
+                    <div className="login__link">
+                        <img src="images/facebook-icon.png" alt="Facebook Icon" />
+                        <p>Ingresar con facebook</p>
+                    </div>
+                </div>
             </div>
-            <input type="submit" value="Ingresar" />
-          </form>
-          {message && <p>{message}</p>}
+            <div className="login__side-banner">
+                <div className="side-banner__box">
+                    <h2>La Mejor</h2>
+                    <h3>Universidad de diseño!</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti, eius!</p>
+                </div>
+            </div>
         </div>
-        <div className="login__links">
-          <div className="login__link">
-            <img src="images/google-icon.png" alt="Google Icon" />
-            <p>Ingresar con e-mail</p>
-          </div>
-          <div className="login__link">
-            <img src="images/facebook-icon.png" alt="Facebook Icon" />
-            <p>Ingresar con facebook</p>
-          </div>
-        </div>
-      </div>
-      <div className="login__side-banner">
-        <div className="side-banner__box">
-          <h2>La Mejor</h2>
-          <h3>Universidad de diseño!</h3>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti, eius!</p>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default Login;
