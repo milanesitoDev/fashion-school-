@@ -7,7 +7,6 @@ import Slider from "../../components/slider/slider";
 import Gallery from "../../components/gallery/gallery";
 import DateCalendarValue from "../calendar/calendar.page";
 import SliderTeam from "../../components/slider/slider-team";
-import BlogCard from "../blog/blog-card";
 
 const Home: React.FC = () => {
   return (
@@ -27,18 +26,35 @@ const Home: React.FC = () => {
       <section className="gallery">
         <Gallery />
       </section>
+
       <section className="carrousel">
-        <SliderTeam />
+
       </section>
+
       <section className="calendar">
         <DateCalendarValue />
       </section>
       <section className="notices">
-        <img src="images/megaphone.png" alt="Megaphone" />
+        <div className="notices_container">
+         <img src="images/megaphone.png" alt="Megaphone" />
+        </div>
+
       </section>
 
       <section className="blog">
-      </section>
+                <div className="blog__card">
+                    <img src="images/gallery.jpg" alt="Gallery" />
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis expedita debitis sit at voluptates provident corrupti, quo neque culpa vitae id deleniti accusantium. Excepturi reiciendis ad repellat tempora, ipsam quis!</p>
+                </div>
+                <div className="blog__card">
+                    <img src="images/gallery.jpg" alt="Gallery" />
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis expedita debitis sit at voluptates provident corrupti, quo neque culpa vitae id deleniti accusantium. Excepturi reiciendis ad repellat tempora, ipsam quis!</p>
+                </div>
+                <div className="blog__card">
+                    <img src="images/gallery.jpg" alt="Gallery" />
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis expedita debitis sit at voluptates provident corrupti, quo neque culpa vitae id deleniti accusantium. Excepturi reiciendis ad repellat tempora, ipsam quis!</p>
+                </div>
+            </section>
 
 
       <footer className="footer">

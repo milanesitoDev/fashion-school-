@@ -27,7 +27,7 @@ const Register: React.FC = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>();
   const [message, setMessage] = React.useState("");
 
-  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+  const onSubmit: SubmitHandler<IFormInput> = async (data: any) => {
     setMessage("");
 
     try {

@@ -56,18 +56,55 @@
 
 
 /* --- NOTICES SECTION --- */
-
-.notices {
+.notices{
+  background: linear-gradient(90deg, #00151f77, transparent, #00151f77),;
+  background-image: url("images/balenciaga.webp");
+  background-size: cover;
+  place-content: center;
+  padding: 120px;
+}
+.notices_container {
   display: flex;
   padding: 60px 60px;
-  background-color: #002b3b;
+  background-color: rgba(0, 43, 59, 0.5); 
+  width: 70rem;
+  margin-right: 70px;
 }
 
 .notices img {
-  width: 380px;
+  width: 200px;
+  
 }
 
 /* --- BLOG SECTION --- */
+.blog {
+  background-image: url("images/f.elconfidencial.com_original_ac7_55f_733_ac755f733645ff83bb26c0780396c394.jpg");
+  background-size: cover;
+  place-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 26px;
+  padding: 120px;
+}
+
+.blog__card {
+  width: 380px;
+  background-color: whitesmoke;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.blog__card img {
+  width: 100%;
+}
+
+.blog__card p {
+  text-transform: uppercase;
+  font-weight: 500;
+  text-align: justify;
+  width: 100%;
+}
 
 /* --- FOOTER SECTION --- */
 
@@ -124,4 +161,10 @@
   gap: 48px;
   font-weight: 300;
   font-size: 1.2em;
+}
+.calendar{
+  background: linear-gradient(90deg, #00151f77, transparent, #00151f77),;
+  background-image: url("images/f.elconfidencial.com_original_ac7_55f_733_ac755f733645ff83bb26c0780396c394.jpg");
+  background-size: cover;
+  place-content: center;
 }
