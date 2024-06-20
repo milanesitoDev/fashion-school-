@@ -1,6 +1,6 @@
 //import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Home from "./pages/home/home.page";
 import Login from "./auth/pages/login/login.page";
 //import Lounge from './components/Lounge';
@@ -18,11 +18,8 @@ import AdminUpFile from './pages/adminUpFile/adminUpFile.page';
 import AdminTeacher from './pages/adminTeacher/adminTeacher.page';
 import Register from './auth/pages/register/register.pages';
 import ForgotPassword from './auth/pages/forgotPass/forgotPassword.page';
-import RetrieveIdStudent from './api/components/students/retrieve-id-students';
-import AddNewStudents from './api/components/students/add-new-students';
-import DeleteStudent from './api/components/students/delate-students';
-import GetStudentsByCourse from './api/components/students/get-students-by-course';
 import CreateSchedule from './api/components/schedules/create-schedule';
+import GetAllUsers from './api/components/users/get-all-users';
 
 
 
@@ -95,7 +92,7 @@ const App: FC = () => {
         <Route path="/../unauthorized" element={<Unauthorized/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/forgotpassword" element={<ForgotPassword/>}/>
-        <Route path="/RetrieveIdStudent" element={<CreateSchedule/>}/>
+        <Route path="/RetrieveIdStudent" element={<GetAllUsers/>}/>
 
 
         {/* Routes protected */}
