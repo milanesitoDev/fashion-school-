@@ -1,21 +1,25 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-interface CreateActivity {
-  course_id: number;
+const UPDATE_ACTIVITY_URL = 'http://18.222.67.121/api/activities';
+
+interface ActivityUpdate {
   name: string;
   video_url: string;
-  description: string;
-  type_id: number;
+  text: string;
+  calification: number;
 }
 
-const CreateActivities: React.FC = () => {
-  const [activity, setActivity] = useState<CreateActivity>({
-    course_id: 0,
+interface UpdateActivityProps {
+  activityId: number;
+}
+
+const UpdateActivity: React.FC<UpdateActivityProps> = ({ activityId }) => {
+  const [activity, setActivity] = useState<ActivityUpdate>({
     name: "",
     video_url: "",
-    description: "",
-    type_id: 0,
+    text: "",
+    calification: 0,
   });
   const [message, setMessage] = useState<string>("");
 
@@ -23,7 +27,7 @@ const CreateActivities: React.FC = () => {
     const { name, value } = e.target;
     setActivity((prevActivity) => ({
       ...prevActivity,
-      [name]: value,
+      [name]: name === "calification" ? parseFloat(value) : value,
     }));
   };
 
@@ -32,19 +36,25 @@ const CreateActivities: React.FC = () => {
     setMessage("");
 
     try {
-      const response = await axios.post(`http://18.222.67.121/api/activities`, activity);
+      const response = await axios.patch(`${UPDATE_ACTIVITY_URL}/${activityId}`, activity);
 
-      if (response.status === 201) {
-        setMessage("Activity created successfully");
+      if (response.status === 200) {
+        setMessage("Activity updated successfully");
       } else {
-        setMessage("Failed to create activity");
+        setMessage("Failed to update activity");
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        if (error.response && error.response.status === 400) {
-          setMessage("Validation error: " + error.response.data.error);
-        } else if (error.response && error.response.status === 404) {
-          setMessage("Course not found");
+        if (error.response) {
+          if (error.response.status === 400) {
+            setMessage("Validation error: " + JSON.stringify(error.response.data.errors));
+          } else if (error.response.status === 404) {
+            setMessage("Activity not found");
+          } else if (error.response.status === 500) {
+            setMessage("Server error: " + error.response.data.errors);
+          } else {
+            setMessage("An error occurred: " + error.message);
+          }
         } else {
           setMessage("An error occurred: " + error.message);
         }
@@ -56,20 +66,8 @@ const CreateActivities: React.FC = () => {
 
   return (
     <div>
-      <h2>Create Activity</h2>
+      <h2>Update Activity</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Course ID:
-            <input
-              type="number"
-              name="course_id"
-              value={activity.course_id}
-              onChange={handleChange}
-              required
-            />
-          </label>
-        </div>
         <div>
           <label>
             Name:
@@ -96,10 +94,10 @@ const CreateActivities: React.FC = () => {
         </div>
         <div>
           <label>
-            Description:
+            Text:
             <textarea
-              name="description"
-              value={activity.description}
+              name="text"
+              value={activity.text}
               onChange={handleChange}
               required
             />
@@ -107,21 +105,22 @@ const CreateActivities: React.FC = () => {
         </div>
         <div>
           <label>
-            Type ID:
+            Calification:
             <input
               type="number"
-              name="type_id"
-              value={activity.type_id}
+              name="calification"
+              value={activity.calification}
               onChange={handleChange}
+              step="0.1"
               required
             />
           </label>
         </div>
-        <button type="submit">Create Activity</button>
+        <button type="submit">Update Activity</button>
       </form>
       {message && <p>{message}</p>}
     </div>
   );
 };
 
-export default CreateActivities;
+export default UpdateActivity;

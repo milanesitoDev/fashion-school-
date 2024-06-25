@@ -24,12 +24,14 @@ const GetUser: React.FC<GetUserProps> = ({ userId }) => {
   useEffect(() => {
     const fetchUser = async () => {
       setMessage("");
+      console.log("Fetching user with ID:", userId);
 
       try {
         const response = await axios.get(`${GET_USER_URL}/${userId}`);
 
         if (response.status === 200) {
-          setUser(response.data[0]);
+          console.log("User data:", response.data);
+          setUser(response.data.data);
         } else {
           setMessage("Failed to retrieve user");
         }

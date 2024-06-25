@@ -12,7 +12,7 @@ const AddNewStudents: React.FC = () => {
   const [student, setStudent] = useState<AddStudent>({
     user_id: 0,
     course_id: 1,
-    id_rol: 3 // Establece id_rol a 3 por defecto para nuevos estudiantes
+    id_rol: 3
   });
   const [message, setMessage] = useState<string>("");
 
@@ -80,7 +80,7 @@ const AddNewStudents: React.FC = () => {
               value={student.course_id}
               onChange={handleChange}
               required
-              disabled // Curso Laravel con ID 1 es fijo
+             
             />
           </label>
         </div>
@@ -93,7 +93,7 @@ const AddNewStudents: React.FC = () => {
               value={student.id_rol}
               onChange={handleChange}
               required
-              disabled // id_rol es fijo para nuevos estudiantes
+            
             />
           </label>
         </div>

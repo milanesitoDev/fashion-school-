@@ -1,31 +1,32 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const DELETE_USER_URL = 'http://18.222.67.121/api/users';
+const DELETE_ACTIVITY_URL = 'http://18.222.67.121/api/activities';
 
-interface DeleteUserProps {
-  userId: number;
+interface DeleteActivityProps {
+  activityId: number;
 }
 
-const DelateUser: React.FC<DeleteUserProps> = ({ userId }) => {
+const DeleteActivity: React.FC<DeleteActivityProps> = ({ activityId }) => {
   const [message, setMessage] = useState<string>("");
 
   const handleDelete = async () => {
     setMessage("");
-
     try {
-      const response = await axios.delete(`${DELETE_USER_URL}/${userId}`);
+      const response = await axios.delete(`${DELETE_ACTIVITY_URL}/${activityId}`);
 
       if (response.status === 200) {
-        setMessage("User deleted successfully");
+        setMessage("Activity deleted successfully");
       } else {
-        setMessage("Failed to delete user");
+        setMessage("Failed to delete activity");
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response) {
           if (error.response.status === 404) {
-            setMessage("User not found");
+            setMessage("Activity not found");
+          } else if (error.response.status === 500) {
+            setMessage("Internal server error");
           } else {
             setMessage("An error occurred: " + error.message);
           }
@@ -40,11 +41,11 @@ const DelateUser: React.FC<DeleteUserProps> = ({ userId }) => {
 
   return (
     <div>
-      <h2>Delete User</h2>
-      <button onClick={handleDelete}>Delete User</button>
+      <h2>Delete Activity</h2>
+      <button onClick={handleDelete}>Delete Activity</button>
       {message && <p>{message}</p>}
     </div>
   );
 };
 
-export default DelateUser;
+export default DeleteActivity;

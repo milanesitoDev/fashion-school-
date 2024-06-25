@@ -34,7 +34,7 @@ const UpdateUser: React.FC<UpdateUserProps> = ({ userId }) => {
     setMessage("");
 
     try {
-      const response = await axios.post(`${UPDATE_USER_URL}/${userId}`, user);
+      const response = await axios.patch(`${UPDATE_USER_URL}/${userId}`, user);
 
       if (response.status === 200) {
         setMessage("User updated successfully");

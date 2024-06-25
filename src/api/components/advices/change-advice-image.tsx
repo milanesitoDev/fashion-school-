@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState } from 'react';
+import axios from 'axios';
 
-const CHANGE_IMAGE_URL = 'http://18.222.67.121/api/users';
+const CHANGE_IMAGE_URL = 'http://18.222.67.121/api/advices';
 
-interface ChangeUserImageProps {
-  userId: number;
-  onImageChange: (url: string) => void;
-}
-
-const ChangeUserImage: React.FC<ChangeUserImageProps> = ({ userId, onImageChange }) => {
-  const [image, setImage] = useState<File | null>(null);
+const ChangeAdviceImage: React.FC = () => {
+  const [adviceId, setAdviceId] = useState<number | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [message, setMessage] = useState<string>("");
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAdviceId(Number(e.target.value));
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setImage(e.target.files[0]);
+      setImageFile(e.target.files[0]);
     }
   };
 
@@ -22,24 +22,23 @@ const ChangeUserImage: React.FC<ChangeUserImageProps> = ({ userId, onImageChange
     e.preventDefault();
     setMessage("");
 
-    if (!image) {
-      setMessage("Please select an image to upload.");
+    if (adviceId === null || imageFile === null) {
+      setMessage("Please enter a valid advice ID and select an image file");
       return;
     }
 
     const formData = new FormData();
-    formData.append("image", image);
+    formData.append("image", imageFile);
 
     try {
-      const response = await axios.post(`${CHANGE_IMAGE_URL}/${userId}/change_image`, formData, {
+      const response = await axios.post(`${CHANGE_IMAGE_URL}/${adviceId}/change_image`, formData, {
         headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+          'Content-Type': 'multipart/form-data',
+        },
       });
 
       if (response.status === 200) {
         setMessage("Image updated successfully");
-        onImageChange(response.data.imageUrl);
       } else {
         setMessage("Failed to update image");
       }
@@ -47,11 +46,11 @@ const ChangeUserImage: React.FC<ChangeUserImageProps> = ({ userId, onImageChange
       if (axios.isAxiosError(error)) {
         if (error.response) {
           if (error.response.status === 400) {
-            setMessage("Bad request: " + JSON.stringify(error.response.data.error));
+            setMessage("Bad request");
           } else if (error.response.status === 404) {
-            setMessage("User not found");
+            setMessage("Advice not found");
           } else if (error.response.status === 500) {
-            setMessage("Internal server error: " + error.response.data.error);
+            setMessage("Internal server error");
           } else {
             setMessage("An error occurred: " + error.message);
           }
@@ -66,7 +65,20 @@ const ChangeUserImage: React.FC<ChangeUserImageProps> = ({ userId, onImageChange
 
   return (
     <div>
+      <h2>Change Advice Image</h2>
       <form onSubmit={handleSubmit}>
+        <div>
+          <label>
+            Advice ID:
+            <input
+              type="number"
+              name="adviceId"
+              value={adviceId || ''}
+              onChange={handleIdChange}
+              required
+            />
+          </label>
+        </div>
         <div>
           <label>
             Select Image:
@@ -74,7 +86,7 @@ const ChangeUserImage: React.FC<ChangeUserImageProps> = ({ userId, onImageChange
               type="file"
               name="image"
               accept="image/*"
-              onChange={handleImageChange}
+              onChange={handleFileChange}
               required
             />
           </label>
@@ -86,4 +98,4 @@ const ChangeUserImage: React.FC<ChangeUserImageProps> = ({ userId, onImageChange
   );
 };
 
-export default ChangeUserImage;
+export default ChangeAdviceImage;

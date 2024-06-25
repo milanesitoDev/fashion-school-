@@ -1,19 +1,22 @@
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import ChangeUserImage from "../../api/components/users/changes-user-image";
 import "./profileCard.component.css";
 
-type teacher = {
+type Teacher = {
   name: string;
   location: string;
   phone: string;
   email: string;
 };
+
 interface ProfileCardProps {
-  teacherData: teacher;
+  teacherData: Teacher;
 }
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ teacherData }) => {
   const navigate = useNavigate();
+  const [imageUrl, setImageUrl] = useState<string>("images/profile.jpg");
 
   const onLogout = () => {
     navigate("/login", {
@@ -24,8 +27,9 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ teacherData }) => {
   return (
     <div className="profile-card">
       <div className="profile-card__image">
-        <img src="images/profile.jpg" alt="Profile" />
+        <img src={imageUrl} alt="Profile" />
       </div>
+      <ChangeUserImage userId={1} onImageChange={setImageUrl} />
       <div className="profile-card__buttons">
         <i className="bx bxs-camera-movie"></i>
         <i className="bx bxs-bell btn--notification"></i>

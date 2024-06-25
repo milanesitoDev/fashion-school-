@@ -7,6 +7,7 @@ import Slider from "../../components/slider/slider";
 import Gallery from "../../components/gallery/gallery";
 import DateCalendarValue from "../calendar/calendar.page";
 import imgEvent from '/images/image 120.png'
+import UsTeam from "../us/us";
 
 const Home: React.FC = () => {
   return (
@@ -27,8 +28,8 @@ const Home: React.FC = () => {
         <Gallery />
       </section>
 
-      <section className="carrousel">
-
+      <section className="">
+        <UsTeam/>
       </section>
 
       <section className="calendar">
@@ -55,7 +56,7 @@ const Home: React.FC = () => {
                 <div className="blog__card">
                     <img src="images/gallery.jpg" alt="Gallery" />
                 </div>
-                <div className="blog__card">
+                <div className="blog__container">
                     <img src="images/gallery.jpg" alt="Gallery" />
                 </div>
                 <div className="blog__card">

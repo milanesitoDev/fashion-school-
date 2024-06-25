@@ -18,7 +18,7 @@ const RecoverActivities: React.FC = () => {
   useEffect(() => {
     const fetchActivities = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/activities`);
+        const response = await axios.get(`http://18.222.67.121/api/activities`);
         
         if (response.status === 200) {
           setActivities(response.data.data);
