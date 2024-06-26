@@ -18,18 +18,10 @@ import AdminUpFile from './pages/adminUpFile/adminUpFile.page';
 import AdminTeacher from './pages/adminTeacher/adminTeacher.page';
 import Register from './auth/pages/register/register.pages';
 import ForgotPassword from './auth/pages/forgotPass/forgotPassword.page';
-import ChangeAdviceImage from './api/components/advices/change-advice-image';
-import DeleteAdvice from './api/components/advices/delate-advice';
-import DeleteFileActivity from './api/components/file-activities/delate-file-activity';
-import AddFileToActivity from './api/components/file-activities/add-file-to-activity';
-import CreateSchedule from './api/components/schedules/create-schedule';
-import AddNewStudents from './api/components/students/add-new-students';
-import ChangeUserPassword from './api/components/users/change-user-password';
-import DelateUser from './api/components/users/delate-user';
-import GetAllUsers from './api/components/users/get-all-users';
-import GetUser from './api/components/users/get-user';
-import UpdateUser from './api/components/users/update-user';
 
+import UpdateUser from './api/components/users/update-user';
+import AddNewStudents from './api/components/students/add-new-students';
+import Invoicing from './pages/invoicing/invoicing';
 
 
 interface Roles {
@@ -101,7 +93,7 @@ const App: FC = () => {
         <Route path="/../unauthorized" element={<Unauthorized/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/forgotpassword" element={<ForgotPassword/>}/>
-        <Route path="/RetrieveIdStudent" element={<UpdateUser userId={1}/>}/>
+        <Route path="/RetrieveIdStudent" element={< Invoicing/>}/>
 
 
         {/* Routes protected */}

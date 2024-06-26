@@ -1,45 +1,28 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Invoicing: React.FC = () => {
 
     const plans = [
         {
-            name: "Basic plan",
+            name: "VISUAL MERCHANDISING",
             price: 12,
             features: [
-                "Curabitur faucibus",
-                "massa ut pretium maximus",
-                "Sed posuere nisi",
-                "Pellentesque eu nibh et neque",
-                "Suspendisse a leo",
-                "Praesent quis venenatis ipsum",
-                "Duis non diam vel tortor",
+                "El visual merchandising es la práctica en la industria minorista de optimizar la presentación de productos y servicios para resaltar mejor sus características y beneficios",
             ],
         },
         {
-            name: "Startup",
+            name: "FOTOGRAFÍA DE MODA INTENSIVO",
             price: 35,
             features: [
-                "Curabitur faucibus",
-                "massa ut pretium maximus",
-                "Sed posuere nisi",
-                "Pellentesque eu nibh et neque",
-                "Suspendisse a leo",
-                "Praesent quis venenatis ipsum",
-                "Duis non diam vel tortor",
+                "Para esta capacitación deberás saber manejo de cámara réflex y traer su radio. En esta capacitación no se enseñará retoque fotográfico solo se dan algunos consejos de su uso.En todas las clases hay una parte  teórica y práctica. Podrás aprender desde la práctica constante ya que en eamoda contamos con un",
             ],
         },
         {
-            name: "Enterprise",
+            name: "PERIODISMO Y COMUNICACIÓN DE MODA",
             price: 60,
             features: [
-                "Curabitur faucibus",
-                "massa ut pretium maximus",
-                "Sed posuere nisi",
-                "Pellentesque eu nibh et neque",
-                "Suspendisse a leo",
-                "Praesent quis venenatis ipsum",
-                "Duis non diam vel tortor",
+                "stas clases se dictarán de manera online a distancia, a través de la plataforma de google classroom, un aula que eamoda preparo para tus clases online. El alumno recibirá un instructivo para poder ser parte de la comunidad virtual de eamoda. Los días y horarios que se darán las clases son los que figuran en este sitio. ",
             ],
         },
     ];
@@ -49,17 +32,18 @@ const Invoicing: React.FC = () => {
             <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
                 <div className='relative max-w-xl mx-auto sm:text-center'>
                     <h3 className='text-gray-800 text-3xl font-semibold sm:text-4xl'>
-                        Pricing for all sizes
+                    Selección de curso
                     </h3>
-                    <div className='mt-3 max-w-xl'>
+                    <div className='mt-3 max-w-x'>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam efficitur consequat nunc.
+                           Elige uno de nuestros mejores cursos
                         </p>
                     </div>
+                    
                 </div>
                 <div className='mt-16 space-y-6 justify-center gap-6 sm:grid sm:grid-cols-2 sm:space-y-0 lg:grid-cols-3'>
                     {plans.map((item, idx) => (
-                        <div key={idx} className='relative flex-1 flex items-stretch flex-col p-8 rounded-xl border-2'>
+                        <div key={idx} className='relative flex-1 flex items-stretch flex-col p-8 rounded-xl border-2 bg-slate-200'>
                             <div>
                                 <span className='text-indigo-600 font-medium'>
                                     {item.name}
@@ -90,10 +74,19 @@ const Invoicing: React.FC = () => {
                                     Get Started
                                 </button>
                             </div>
+                            
                         </div>
+                        
                     ))}
+                     <Link  className='px-3 py-3 pr-14  mt-36 rounded-lg w-96 font-semibold text-sm duration-150 text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700'
+            to={"/forgotpassword"}
+            >
+                                    Get Started
+                                </Link>
                 </div>
+                
             </div>
+           
         </section>
     );
 };
