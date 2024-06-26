@@ -19,9 +19,8 @@ import AdminTeacher from './pages/adminTeacher/adminTeacher.page';
 import Register from './auth/pages/register/register.pages';
 import ForgotPassword from './auth/pages/forgotPass/forgotPassword.page';
 
-import UpdateUser from './api/components/users/update-user';
-import AddNewStudents from './api/components/students/add-new-students';
-import Invoicing from './pages/invoicing/invoicing';
+import CreditCardForm from './pages/invoicing/creditCardForm';
+
 
 
 interface Roles {
@@ -93,7 +92,7 @@ const App: FC = () => {
         <Route path="/../unauthorized" element={<Unauthorized/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/forgotpassword" element={<ForgotPassword/>}/>
-        <Route path="/RetrieveIdStudent" element={< Invoicing/>}/>
+        <Route path="/RetrieveIdStudent" element={< CreditCardForm/>}/>
 
 
         {/* Routes protected */}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import ChangeUserImage from "../../api/components/users/changes-user-image";
+import ChangeUserImage from "../../api/components/users/changeUserImage";
 import "./profileCard.component.css";
 
 type Teacher = {

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import './invoicing.css'
 
 const Invoicing: React.FC = () => {
 
@@ -31,10 +32,10 @@ const Invoicing: React.FC = () => {
         <section className='py-14'>
             <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
                 <div className='relative max-w-xl mx-auto sm:text-center'>
-                    <h3 className='text-gray-800 text-3xl font-semibold sm:text-4xl'>
+                    <h3 className='text-white text-3xl font-semibold sm:text-4xl'>
                     Selección de curso
                     </h3>
-                    <div className='mt-3 max-w-x'>
+                    <div className='mt-3 max-w-x text-white'>
                         <p>
                            Elige uno de nuestros mejores cursos
                         </p>
@@ -43,9 +44,9 @@ const Invoicing: React.FC = () => {
                 </div>
                 <div className='mt-16 space-y-6 justify-center gap-6 sm:grid sm:grid-cols-2 sm:space-y-0 lg:grid-cols-3'>
                     {plans.map((item, idx) => (
-                        <div key={idx} className='relative flex-1 flex items-stretch flex-col p-8 rounded-xl border-2 bg-slate-200'>
+                        <div key={idx} className='relative flex-1 flex items-stretch flex-col p-8 rounded-xl border-2 bg-white'>
                             <div>
-                                <span className='text-indigo-600 font-medium'>
+                                <span className='text-black font-medium'>
                                     {item.name}
                                 </span>
                                 <div className='mt-4 text-gray-800 text-3xl font-semibold'>
@@ -70,19 +71,16 @@ const Invoicing: React.FC = () => {
                                 ))}
                             </ul>
                             <div className="flex-1 flex items-end">
-                                <button className='px-3 py-3 rounded-lg w-full font-semibold text-sm duration-150 text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700'>
+                                <Link className='px-3 py-3 rounded-lg w-full font-semibold text-sm duration-150 text-white bg-[#002b3b] hover:bg-indigo-500 active:bg-indigo-700'
+                                to={"/InvoiceOrders"}>
                                     Get Started
-                                </button>
+                                </Link>
                             </div>
                             
                         </div>
                         
                     ))}
-                     <Link  className='px-3 py-3 pr-14  mt-36 rounded-lg w-96 font-semibold text-sm duration-150 text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700'
-            to={"/forgotpassword"}
-            >
-                                    Get Started
-                                </Link>
+
                 </div>
                 
             </div>
