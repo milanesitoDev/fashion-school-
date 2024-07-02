@@ -8,6 +8,7 @@ import Gallery from "../../components/gallery/gallery";
 import DateCalendarValue from "../calendar/calendar.page";
 import imgEvent from '/images/image 120.png'
 import UsTeam from "../us/us";
+import CalendarFull from "../calendar/calendar-full";
 
 const Home: React.FC = () => {
   return (
@@ -31,7 +32,9 @@ const Home: React.FC = () => {
       <section className="">
         <UsTeam/>
       </section>
-
+      <section>
+        <CalendarFull/>
+      </section>
       <section className="calendar">
       <div className="header__text__calendar">
             <p className="text__bold__calendar">Eventos</p>

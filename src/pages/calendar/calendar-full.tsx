@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { formatDate } from '@fullcalendar/core';
-import FullCalendar, { DateSelectArg, EventClickArg } from '@fullcalendar/react';
+import FullCalendar from '@fullcalendar/react';
+import { DateSelectArg, EventClickArg, formatDate } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import { INITIAL_EVENTS, createEventId } from './event-utils'; // Importar desde event-utils
-import './calendar-full.css'
+import { INITIAL_EVENTS, createEventId } from './event-utils';
+import './calendar-full.css';
 
 interface Event {
   id: string;
   title: string;
-  start: string; // O el tipo de dato correcto para la fecha
-  end?: string; // Opcional si tus eventos tienen un fin definido
-  allDay?: boolean; // Opcional si tus eventos son todo el día
+  start: string;
+  end?: string;
+  allDay?: boolean;
 }
 
 export default function CalendarFull() {
@@ -27,7 +27,7 @@ export default function CalendarFull() {
     const title = prompt('Please enter a new title for your event');
     const calendarApi = selectInfo.view.calendar;
 
-    calendarApi.unselect(); // clear date selection
+    calendarApi.unselect();
 
     if (title) {
       calendarApi.addEvent({
@@ -35,7 +35,7 @@ export default function CalendarFull() {
         title,
         start: selectInfo.startStr,
         end: selectInfo.endStr,
-        allDay: selectInfo.allDay
+        allDay: selectInfo.allDay,
       });
     }
   }
@@ -132,11 +132,11 @@ export default function CalendarFull() {
           selectMirror={true}
           dayMaxEvents={true}
           weekends={weekendsVisible}
-          initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
+          initialEvents={INITIAL_EVENTS}
           select={handleDateSelect}
-          eventContent={renderEventContent} // custom render function
+          eventContent={renderEventContent}
           eventClick={handleEventClick}
-          eventsSet={handleEvents} // called after events are initialized/added/changed/removed
+          eventsSet={handleEvents}
         />
       </div>
     </div>

@@ -5,6 +5,7 @@ import AdminStudents from "../../pages/adminStudents/adminStudents.page";
 import AdminUpFile from "../../pages/adminUpFile/adminUpFile.page";
 import AdminQualifications from "../../pages/adminQualifications/adminQualifications.page";
 import Home from "../../pages/home/home.page";
+import Invoicing from "../../pages/invoicing/invoicing";
 
 export const SchoolRoutes: React.FC = () => {
   type teacher = {

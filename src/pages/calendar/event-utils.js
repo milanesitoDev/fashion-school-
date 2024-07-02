@@ -1,3 +1,4 @@
+// event-utils.ts
 let eventGuid = 0;
 let todayStr = new Date().toISOString().replace(/T.*$/, ''); // YYYY-MM-DD de hoy
 

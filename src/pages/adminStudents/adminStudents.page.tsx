@@ -2,6 +2,7 @@ import React from "react";
 
 import ProfileCard from "../../components/profileCard/profileCard.component";
 import Navbar from "../../components/navbar/navbar.component";
+import TeacherSchedule from '../../api/components/schedules/teacherSchedule'; // Asegúrate de que la ruta sea correcta
 
 import "./adminStudents.page.css";
 
@@ -10,7 +11,9 @@ type teacher = {
   location: string;
   phone: string;
   email: string;
+  id: number;
 };
+
 interface AdminStudentsProps {
   teacherData: teacher;
 }
@@ -32,6 +35,7 @@ const AdminStudents: React.FC<AdminStudentsProps> = ({ teacherData }) => {
             </ul>
             <p className="admin-students__value">Informe de la nota</p>
           </div>
+          <TeacherSchedule teacherId={teacherData.id} />
         </main>
       </div>
     </>

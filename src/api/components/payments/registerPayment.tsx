@@ -81,6 +81,7 @@ const RegisterPayment: React.FC = () => {
               value={paymentData.product_id}
               onChange={handleChange}
               required
+              className='bg-slate-500'
             />
           </label>
         </div>
@@ -93,6 +94,7 @@ const RegisterPayment: React.FC = () => {
               value={paymentData.user_id}
               onChange={handleChange}
               required
+              className='bg-slate-500'
             />
           </label>
         </div>
@@ -105,6 +107,7 @@ const RegisterPayment: React.FC = () => {
               value={paymentData.value}
               onChange={handleChange}
               required
+              className='bg-slate-500'
             />
           </label>
         </div>
@@ -116,6 +119,7 @@ const RegisterPayment: React.FC = () => {
               name="currency"
               value={paymentData.currency}
               onChange={handleChange}
+              className='bg-slate-500'
             />
           </label>
         </div>
@@ -126,10 +130,11 @@ const RegisterPayment: React.FC = () => {
               name="observations"
               value={paymentData.observations}
               onChange={handleChange}
+              className='bg-slate-500'
             />
           </label>
         </div>
-        <button type="submit">Register Payment</button>
+        <button type="submit" className='bg-slate-500'>Register Payment</button>
       </form>
       {message && <p>{message}</p>}
     </div>

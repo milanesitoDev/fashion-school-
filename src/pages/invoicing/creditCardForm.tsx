@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import srtipe from '../../../public/images/Stripe_Logo.png'
 
 interface FormData {
   name: string | null;
@@ -110,65 +110,152 @@ const CreditCardForm: React.FC = () => {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-6 lg:p-24">
-      {!isSubmitted ? (
-        <form className="bg-white w-full max-w-3xl mx-auto px-4 lg:px-6 py-8 shadow-md rounded-md flex flex-col lg:flex-row cardForm" onSubmit={handleSubmit}>
-          <label className="labelname">
-            Cardholder Name
-            <input type="text" placeholder="e.g. Jane Appleseed" onChange={handleInput} name="name" className="card-input border-gray-300/30 outline-none border-2 border-solid focus:border-blue-400" />
-          </label>
-          <p className="info info-name info--hidden" aria-live="polite"></p>
+      
 
-          <label className="labelnumber">
-            Card Number
-            <input type="text" placeholder="e.g. 1234 5678 9123 0000" onChange={handleInput} name="number" className="card-input border-gray-300/30 outline-none border-2 border-solid focus:border-blue-400" minLength={19} />
-          </label>
-          <p className="info info-number info--hidden" aria-live="polite"></p>
-
-          <div className="cvc-mmyy">
-            <label className="labelmm labelyy">
-              Exp. Date (MM/YY)
-              <div>
-                <input type="text" placeholder="MM" onChange={handleInput} name="mm" className="card-input border-gray-300/30 outline-none border-2 border-solid focus:border-blue-400" />
-                <input type="text" placeholder="YY" onChange={handleInput} name="yy" className="card-input border-gray-300/30 outline-none border-2 border-solid focus:border-blue-400" />
-              </div>
-            </label>
-            <p className="info info-mm info--hidden" aria-live="polite"></p>
-
-            <label className="labelcvc">
-              CVC
-              <input type="text" placeholder="e.g. 123" onChange={handleInput} name="cvc" className="card-input border-gray-300/30 outline-none border-2 border-solid focus:border-blue-400" />
-            </label>
-            <p className="info info-cvc info--hidden" aria-live="polite"></p>
-
-            <button type="submit" className="btn-submit btn-primary">
-              Confirm
+      {isSubmitted ? (
+        <section className="relative h-max w-full p-8">
+          <div className="h-full w-full rounded-xl bg-white  p-8 shadow-xl flex flex-col justify-center items-center gap-8">
+            <figure className="rounded-full w-20 aspect-square">
+              <img src="/icon-complete.svg" alt="form completed icon" className="w-full" />
+            </figure>
+            <h1 className="uppercase text-3xl tracking-widest">Thank you!</h1>
+            <p className="text-gray-400">We've added your card details</p>
+            <button
+              className="btn-continue py-3 px-8 w-full rounded-lg bg-gray-900 text-gray-50 shadow-md focus:outline-none"
+              onClick={resetForm}
+            >
+              Continue
             </button>
           </div>
-        </form>
+        </section>
       ) : (
-        <div className="cardThanks">
-          <img src={''} alt="Thank You Icon" className="mx-auto pb-6" />
-          <p className="tracking-widest p-4">Thank you!</p>
-          <p>We've added your card details</p>
-          <button className="btn-primary pt-2" onClick={resetForm}>
-            Continue
-          </button>
-        </div>
+        <section className="relative h-max w-full p-8">
+          <form
+            className="h-full w-full lg:w-1/2 rounded-xl bg-white p-8 shadow-xl flex flex-col justify-center gap-4 m-auto"
+            onSubmit={handleSubmit}
+            autoComplete="off"
+          >
+            <div className="form-group flex flex-col gap-2">
+              <label htmlFor="name" className="uppercase text-xs tracking-widest">
+                cardholder name
+              </label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                className="input text-lg border-2 border-gray-200 p-3 rounded-md focus:outline-none focus:border-gray-400"
+                placeholder="e.g. John Doe"
+                value={formData.name || ''}
+                onInput={handleInput}
+              />
+            </div>
+            <div className="form-group flex flex-col">
+              <label htmlFor="number" className="uppercase text-xs tracking-widest">
+                card number
+              </label>
+              <input
+                type="text"
+                name="number"
+                id="number"
+                className="input text-lg border-2 border-gray-200 p-3 rounded-md focus:outline-none focus:border-gray-400"
+                placeholder="e.g. 1234 5678 9123 0000"
+                value={formData.number || ''}
+                onInput={handleInput}
+              />
+            </div>
+            <div className="form-group grid grid-cols-2">
+              <div className="flex flex-col">
+                <label htmlFor="mm" className="">
+                  exp. date (MM/YY)
+                </label>
+                <div className="flex gap-4">
+                  <input
+                    type="text"
+                    name="mm"
+                    id="mm"
+                    className="input  w-10 text-lg border-2 border-gray-200 p-3 rounded-md focus:outline-none focus:border-gray-400"
+                    placeholder="MM"
+                    value={formData.mm || ''}
+                    onInput={handleInput}
+                  />
+                  <input
+                    type="text"
+                    name="yy"
+                    id="yy"
+                    className=" w-16 input text-lg border-2 border-gray-200 p-3 rounded-md focus:outline-none focus:border-gray-400"
+                    placeholder="YY"
+                    value={formData.yy || ''}
+                    onInput={handleInput}
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col gap-2">
+                <label htmlFor="cvc" className="mt-3 ml-11">
+                  cvc
+                </label>
+                <input
+                  type="text"
+                  name="cvc"
+                  id="cvc"
+                  className=" ml-10 input text-lg border-2 border-gray-200 p-3 rounded-md focus:outline-none focus:border-gray-400"
+                  placeholder="e.g. 123"
+                  value={formData.cvc || ''}
+                  onFocus={toggleBackCard}
+                  onBlur={toggleBackCard}
+                  onInput={handleInput}
+                />
+              </div>
+            </div>
+            <button
+              className="btn-submit py-3 px-8 w-full rounded-lg bg-gray-900 text-gray-50 shadow-md focus:outline-none"
+              type="submit"
+            >
+              Confirm
+            </button>
+          </form>
+        </section>
       )}
+      <figure className="absolute m-24">
+        <div className="credit-card w-max h-max relative select-none pointer-events-none m-20">
+          {/* Card verso */}
+          <div className={`verso z-1 absolute overflow-hidden transform translate-y-12 left-16 w-96 h-56 rounded-2xl bg-gray-400 shadow-2xl ${isBackVisible ? 'block' : 'hidden'}`}>
+            <div className="w-full h-12 bg-gray-200 absolute top-10">&nbsp;</div>
+            <div className="absolute top-24 left-12 text-lg text-black">{formData.cvc || '000'}</div>
+          </div>
 
-      <aside className="">
-        <div className="from-indigo-500 via-purple-500 to-pink-500">
-          <span>{formData.number || '0000 0000 0000 0000'}</span>
-          <div>
-            <span>{formData.name || 'Jane Appleseed'}</span>
-            <span>{formData.mm || '00'}/{formData.yy || '00'}</span>
+          {/* Card recto */}
+          <div className={`recto z-2 absolute overflow-hidden w-96 h-56 rounded-2xl px-8 py-6 ml-60 bg-black text-white shadow-xl flex flex-col justify-end gap-6 ${isBackVisible ? 'hidden' : 'block'}`}>
+            {/* Visa logo */}
+            <div className="logo absolute top-6 right-8 w-16 h-8 flex justify-items-center items-center">
+              <img src={srtipe} alt='logo'/>
+            </div>
+
+            {/* PIN */}
+            <div className="pin w-11 h-7 rounded bg-yellow-100">&nbsp;</div>
+
+            {/* Card number */}
+            <div className="number whitespace-nowrap text-2xl font-semibold" style={{ fontFamily: 'Courier new, mono' }}>
+              {formData.number || '0000 0000 0000 0000'}
+            </div>
+
+            {/* Card infos */}
+            <div className="credentials flex gap-8">
+              <div className="owner flex flex-col w-max">
+                <span className="text-xs uppercase">Card holder</span>
+                <span className="whitespace-nowrap text-lg">{formData.name || 'John DOE'}</span>
+              </div>
+              <div className="expires flex flex-col w-max">
+                <span className="text-xs uppercase">Expires</span>
+                <span className="whitespace-nowrap text-lg">{formData.mm || '00'}/{formData.yy || '00'}</span>
+              </div>
+              <div className="cvc flex flex-col w-max">
+                <span className="text-xs uppercase">cvc</span>
+                <span className="whitespace-nowrap text-lg">{formData.cvc || '000'}</span>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div className={`cardBack ${isBackVisible ? 'seeBack' : ''}`} onClick={toggleBackCard}>
-          <span>{formData.cvc || '000'}</span>
-        </div>
-      </aside>
+      </figure>
     </main>
   );
 };
