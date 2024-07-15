@@ -36,7 +36,7 @@ const UpdateActivity: React.FC<UpdateActivityProps> = ({ activityId }) => {
     setMessage("");
 
     try {
-      const response = await axios.patch(`${UPDATE_ACTIVITY_URL}/${activityId}`, activity);
+      const response = await axios.post(`${UPDATE_ACTIVITY_URL}/${activityId}`, activity);
 
       if (response.status === 200) {
         setMessage("Activity updated successfully");

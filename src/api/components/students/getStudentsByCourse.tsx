@@ -24,7 +24,7 @@ const GetStudentsByCourse: React.FC = () => {
     setMessage("");
 
     try {
-      const response = await axios.get(`http://18.222.67.121/api/students/courses/${courseId}`);
+      const response = await axios.get(`http://18.222.67.121/api/student/courses/${courseId}`);
 
       if (response.status === 200) {
         setStudents(response.data.data);
@@ -36,7 +36,7 @@ const GetStudentsByCourse: React.FC = () => {
       if (axios.isAxiosError(error)) {
         if (error.response) {
           if (error.response.status === 404) {
-            setMessage("Student not found");
+            setMessage("Students not found");
             setStudents([]);
           } else {
             setMessage("An error occurred: " + error.message);
@@ -60,13 +60,7 @@ const GetStudentsByCourse: React.FC = () => {
         <div>
           <label>
             Course ID:
-            <input
-              type="number"
-              name="course_id"
-              value={courseId}
-              onChange={handleChange}
-              required
-            />
+            <input type="number" name="course_id" value={courseId} onChange={handleChange} required />
           </label>
         </div>
         <button type="submit">Get Students</button>

@@ -1,60 +1,44 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { format, parseISO } from 'date-fns';
 
-
-const CREATE_SCHEDULE_URL = '/schedules';
-
-interface Schedule {
-  activity_id: number;
-  teacher_id: number;
-  start_hour: string;
-  end_hour: string;
-}
+const CREATE_SCHEDULE_URL = 'http://18.222.67.121/api/schedule';
 
 const CreateSchedule: React.FC = () => {
-  const [schedule, setSchedule] = useState<Schedule>({
-    activity_id: 1,
-    teacher_id: 1,
-    start_hour: "",
-    end_hour: "",
-  });
-  const [message, setMessage] = useState<string>("");
+  const [activityId, setActivityId] = useState<number | string>('');
+  const [teacherId, setTeacherId] = useState<number | string>('');
+  const [startHour, setStartHour] = useState<string>('');
+  const [endHour, setEndHour] = useState<string>('');
+  const [message, setMessage] = useState<string>('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setSchedule((prevSchedule) => ({
-      ...prevSchedule,
-      [name]: value,
-    }));
-  };
+  const handleCreateSchedule = async () => {
+    if (!activityId || !teacherId || !startHour || !endHour) {
+      setMessage('Please fill out all fields.');
+      return;
+    }
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setMessage("");
+    const scheduleData = {
+      activity_id: activityId,
+      teacher_id: teacherId,
+      start_hour: format(parseISO(startHour), "dd-MM-yyyy HH:mm"),
+      end_hour: format(parseISO(endHour), "dd-MM-yyyy HH:mm"),
+    };
 
     try {
-      const response = await axios.post(CREATE_SCHEDULE_URL, schedule);
+      const response = await axios.post(CREATE_SCHEDULE_URL, scheduleData);
 
       if (response.status === 201) {
-        setMessage("Schedule created successfully");
-      } else {
-        setMessage("Failed to create schedule");
+        setMessage('Schedule created successfully');
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response) {
-          if (error.response.status === 400) {
-            setMessage("Validation error: " + JSON.stringify(error.response.data.errors));
-          } else if (error.response.status === 500) {
-            setMessage("Internal server error: " + error.response.data.errors);
-          } else {
-            setMessage("An error occurred: " + error.message);
-          }
+          setMessage('Error: ' + error.response.data.message);
         } else {
-          setMessage("An error occurred: " + error.message);
+          setMessage('Error: ' + error.message);
         }
       } else {
-        setMessage("An unexpected error occurred");
+        setMessage('An unexpected error occurred');
       }
     }
   };
@@ -62,57 +46,39 @@ const CreateSchedule: React.FC = () => {
   return (
     <div>
       <h2>Create New Schedule</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Activity ID:
-            <input
-              type="number"
-              name="activity_id"
-              value={schedule.activity_id}
-              onChange={handleChange}
-              required
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Teacher ID:
-            <input
-              type="number"
-              name="teacher_id"
-              value={schedule.teacher_id}
-              onChange={handleChange}
-              required
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Start Hour:
-            <input
-              type="datetime-local"
-              name="start_hour"
-              value={schedule.start_hour}
-              onChange={handleChange}
-              required
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            End Hour:
-            <input
-              type="datetime-local"
-              name="end_hour"
-              value={schedule.end_hour}
-              onChange={handleChange}
-              required
-            />
-          </label>
-        </div>
-        <button type="submit">Create Schedule</button>
-      </form>
+      <div>
+        <label>Activity ID:</label>
+        <input
+          type="number"
+          value={activityId}
+          onChange={(e) => setActivityId(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Teacher ID:</label>
+        <input
+          type="number"
+          value={teacherId}
+          onChange={(e) => setTeacherId(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Start Hour:</label>
+        <input
+          type="datetime-local"
+          value={startHour}
+          onChange={(e) => setStartHour(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>End Hour:</label>
+        <input
+          type="datetime-local"
+          value={endHour}
+          onChange={(e) => setEndHour(e.target.value)}
+        />
+      </div>
+      <button onClick={handleCreateSchedule}>Create Schedule</button>
       {message && <p>{message}</p>}
     </div>
   );

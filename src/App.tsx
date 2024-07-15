@@ -19,23 +19,7 @@ import AdminTeacher from './pages/adminTeacher/adminTeacher.page';
 import Register from './auth/pages/register/register.pages';
 import ForgotPassword from './auth/pages/forgotPass/forgotPassword.page';
 
-import CreditCardForm from './pages/invoicing/creditCardForm';
-import InvoiceOrders from './pages/invoicing/invoiceOrders';
-import Invoicing from './pages/invoicing/invoicing';
-import ChangeUserPassword from './api/components/users/changeUserPassword';
-import DelateUser from './api/components/users/delateUser';
-import GetAllUsers from './api/components/users/getAllUsers';
-import GetUser from './api/components/users/getUser';
-import UpdateUser from './api/components/users/updateUser';
-import GetPaymentById from './api/components/payments/getPaymentById';
-import GetAllPayments from './api/components/payments/getAllPayments';
-import RegisterPayment from './api/components/payments/registerPayment';
-import UpdatePaymentById from './api/components/payments/updatePaymentById';
-import CreateProduct from './api/components/products/createProduct';
-import GetAllProduct from './api/components/products/getAllProduct';
-import GetProductById from './api/components/products/getProductById';
-
-
+import ApiManagerCalification from './api/components/califications/ApiManagerCalification';
 
 interface Roles {
   Admin: string;  
@@ -106,9 +90,9 @@ const App: FC = () => {
         <Route path="/../unauthorized" element={<Unauthorized/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/forgotpassword" element={<ForgotPassword/>}/>
-        <Route path="/RetrieveIdStudent" element={<RegisterPayment/>}/>
+        <Route path="/RetrieveIdStudent" element={<ApiManagerCalification/>}/>
 
-
+ k
         {/* Routes protected */}
         <Route element={<RequireAuth allowedRoles={[ROLES.Student]}  />}>
         <Route

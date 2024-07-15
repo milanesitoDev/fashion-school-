@@ -14,7 +14,7 @@ const DeleteStudent: React.FC = () => {
     setMessage("");
 
     try {
-      const response = await axios.delete(`http://18.222.67.121/api/students/${studentId}`);
+      const response = await axios.delete(`http://18.222.67.121/api/student/${studentId}`);
 
       if (response.status === 200) {
         setMessage("Student deleted successfully");
@@ -45,13 +45,7 @@ const DeleteStudent: React.FC = () => {
         <div>
           <label>
             Student ID:
-            <input
-              type="number"
-              name="student_id"
-              value={studentId}
-              onChange={handleChange}
-              required
-            />
+            <input type="number" name="student_id" value={studentId} onChange={handleChange} required />
           </label>
         </div>
         <button type="submit">Delete Student</button>

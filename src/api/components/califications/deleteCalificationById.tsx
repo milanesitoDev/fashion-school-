@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const DELETE_CALIFICATION_URL = 'http://18.222.67.121/califications';
+const DELETE_CALIFICATION_URL = 'http://18.222.67.121/api/califications';
 
 const DeleteCalificationById: React.FC = () => {
   const [calificationId, setCalificationId] = useState<number | null>(null);
@@ -20,9 +20,7 @@ const DeleteCalificationById: React.FC = () => {
     }
 
     try {
-      const response = await axios.delete(
-        `${DELETE_CALIFICATION_URL}/${calificationId}`
-      );
+      const response = await axios.delete(`${DELETE_CALIFICATION_URL}/${calificationId}`);
 
       if (response.status === 200) {
         setResponseMessage("Calification deleted successfully");
@@ -32,13 +30,9 @@ const DeleteCalificationById: React.FC = () => {
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response) {
-          if (error.response.status === 404) {
-            setResponseMessage("Calification not found");
-          } else {
-            setResponseMessage("An error occurred: " + error.message);
-          }
+          setResponseMessage(`Error: ${error.response.data.error}`);
         } else {
-          setResponseMessage("An error occurred: " + error.message);
+          setResponseMessage(`An error occurred: ${error.message}`);
         }
       } else {
         setResponseMessage("An unexpected error occurred");

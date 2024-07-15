@@ -6,7 +6,7 @@ interface AddStudent {
   course_id: number;
   id_rol: number;
 }
-const STUDENTS_URL = '/students';
+const STUDENTS_URL = 'http://18.222.67.121/api/';
 
 const AddNewStudents: React.FC = () => {
   const [student, setStudent] = useState<AddStudent>({

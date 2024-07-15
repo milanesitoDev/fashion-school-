@@ -44,13 +44,9 @@ const AddCalification: React.FC = () => {
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response) {
-          if (error.response.status === 400) {
-            setMessage("Bad request: " + error.response.data.error);
-          } else {
-            setMessage("An error occurred: " + error.message);
-          }
+          setMessage(`Error: ${error.response.data.error}`);
         } else {
-          setMessage("An error occurred: " + error.message);
+          setMessage(`An error occurred: ${error.message}`);
         }
       } else {
         setMessage("An unexpected error occurred");

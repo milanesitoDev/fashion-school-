@@ -51,7 +51,7 @@ const GetAllUsers: React.FC = () => {
 
   return (
     <div>
-      <h2>All Users</h2>
+      <h2 className="text-center text-lg font-medium" >All Users</h2>
       {message && <p>{message}</p>}
       {users.length > 0 ? (
         <ul>

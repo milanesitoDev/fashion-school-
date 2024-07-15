@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const GET_CALIFICATIONS_URL = 'http://18.222.67.121/califications';
+const GET_CALIFICATIONS_URL = 'http://18.222.67.121/api/califications';
 
 const GetCalifications: React.FC = () => {
   const [studentId, setStudentId] = useState<number | null>(null);
@@ -27,7 +27,12 @@ const GetCalifications: React.FC = () => {
     }
 
     try {
-      const response = await axios.get(`${GET_CALIFICATIONS_URL}/${studentId}/activity/${activityId}`);
+      const response = await axios.get(GET_CALIFICATIONS_URL, {
+        params: {
+          student_id: studentId,
+          activity_id: activityId
+        }
+      });
 
       if (response.status === 200) {
         setData(response.data.data);
@@ -38,15 +43,9 @@ const GetCalifications: React.FC = () => {
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response) {
-          if (error.response.status === 400) {
-            setMessage("Bad request: " + error.response.data.error);
-          } else if (error.response.status === 404) {
-            setMessage("No califications found for this activity and student");
-          } else {
-            setMessage("An error occurred: " + error.message);
-          }
+          setMessage(`Error: ${error.response.data.error}`);
         } else {
-          setMessage("An error occurred: " + error.message);
+          setMessage(`An error occurred: ${error.message}`);
         }
       } else {
         setMessage("An unexpected error occurred");
@@ -56,7 +55,7 @@ const GetCalifications: React.FC = () => {
 
   return (
     <div>
-      <h2>Get Califications</h2>
+      <h2>Get Califications by Student ID and Activity ID</h2>
       <div>
         <label>
           Student ID:
@@ -85,14 +84,11 @@ const GetCalifications: React.FC = () => {
       {message && <p>{message}</p>}
       {data && (
         <div>
-          <h3>Activity Info</h3>
-          <p>Course: {data["info activity"].course}</p>
-          <p>Activity: {data["info activity"].activity}</p>
           <h3>Califications</h3>
           <ul>
-            {data.califications.map((calification: any) => (
+            {data.map((calification: any) => (
               <li key={calification.id}>
-                Calification {calification.id}: {calification["calification 1"]}
+                ID: {calification.id}, Calification: {calification.calification}
               </li>
             ))}
           </ul>

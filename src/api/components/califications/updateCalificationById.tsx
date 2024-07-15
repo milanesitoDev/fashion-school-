@@ -1,51 +1,33 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const UPDATE_CALIFICATION_URL = 'http://18.222.67.121/califications';
-
-// Definir el tipo de datos esperados
-interface UpdateCalificationResponse {
-  message: string;
-  status: number;
-  data: {
-    id: number;
-    value: number;
-  };
-}
+const UPDATE_CALIFICATION_URL = 'http://18.222.67.121/api/califications';
 
 const UpdateCalificationById: React.FC = () => {
   const [calificationId, setCalificationId] = useState<number | null>(null);
-  const [newCalificationValue, setNewCalificationValue] = useState<number | null>(null);
+  const [newCalification, setNewCalification] = useState<number | null>(null);
   const [responseMessage, setResponseMessage] = useState<string>("");
 
   const handleCalificationIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCalificationId(Number(e.target.value));
   };
 
-  const handleNewCalificationValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewCalificationValue(Number(e.target.value));
+  const handleNewCalificationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewCalification(Number(e.target.value));
   };
 
   const handleUpdateCalification = async () => {
     setResponseMessage("");
 
-    if (calificationId === null || newCalificationValue === null) {
-      setResponseMessage("Please enter valid calification ID and value");
+    if (calificationId === null || newCalification === null) {
+      setResponseMessage("Please enter valid calification details");
       return;
     }
 
     try {
-      const response = await axios.post<UpdateCalificationResponse>(
-        `${UPDATE_CALIFICATION_URL}/${calificationId}`,
-        {
-          value: newCalificationValue
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
-      );
+      const response = await axios.post(`${UPDATE_CALIFICATION_URL}/${calificationId}`, {
+        calification: newCalification
+      });
 
       if (response.status === 200) {
         setResponseMessage("Calification updated successfully");
@@ -55,15 +37,9 @@ const UpdateCalificationById: React.FC = () => {
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response) {
-          if (error.response.status === 404) {
-            setResponseMessage("Calification not found");
-          } else if (error.response.status === 400) {
-            setResponseMessage("Invalid input");
-          } else {
-            setResponseMessage("An error occurred: " + error.message);
-          }
+          setResponseMessage(`Error: ${error.response.data.error}`);
         } else {
-          setResponseMessage("An error occurred: " + error.message);
+          setResponseMessage(`An error occurred: ${error.message}`);
         }
       } else {
         setResponseMessage("An unexpected error occurred");
@@ -88,12 +64,13 @@ const UpdateCalificationById: React.FC = () => {
       </div>
       <div>
         <label>
-          New Calification Value:
+          New Calification:
           <input
             type="number"
-            name="newCalificationValue"
-            value={newCalificationValue || ''}
-            onChange={handleNewCalificationValueChange}
+            step="0.1"
+            name="newCalification"
+            value={newCalification || ''}
+            onChange={handleNewCalificationChange}
             required
           />
         </label>

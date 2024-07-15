@@ -40,8 +40,8 @@ const DelateUser: React.FC<DeleteUserProps> = ({ userId }) => {
 
   return (
     <div>
-      <h2>Delete User</h2>
-      <button onClick={handleDelete}>Delete User</button>
+      <h2 className="text-center text-lg font-medium">Delete User</h2>
+      <button onClick={handleDelete} className=" mt-6 inline-block rounded border border-slate-500 px-12 py-3 text-sm font-medium text-slate-500 hover:bg-slate-600 hover:text-white focus:outline-none focus:ring active:bg-slate-500">Delete User</button>
       {message && <p>{message}</p>}
     </div>
   );

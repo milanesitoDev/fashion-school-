@@ -62,7 +62,7 @@ const UpdateUser: React.FC<UpdateUserProps> = ({ userId }) => {
 
   return (
     <div>
-      <h2>Update User</h2>
+      <h2 className="text-center text-lg font-medium" >Update User</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>
@@ -100,7 +100,7 @@ const UpdateUser: React.FC<UpdateUserProps> = ({ userId }) => {
             />
           </label>
         </div>
-        <button type="submit">Update User</button>
+        <button type="submit" className="inline-block rounded border border-slate-500 px-12 py-3 text-sm font-medium text-slate-500 hover:bg-slate-600 hover:text-white focus:outline-none focus:ring active:bg-slate-500">Update User</button>
       </form>
       {message && <p>{message}</p>}
     </div>

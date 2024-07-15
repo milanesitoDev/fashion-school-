@@ -39,7 +39,7 @@ const DeletePaymentById: React.FC<DeletePaymentProps> = ({ paymentId }) => {
   return (
     <div>
       <h2>Delete Payment</h2>
-      <button onClick={handleDelete}>Delete Payment</button>
+      <button onClick={handleDelete} className="inline-block rounded border border-slate-500 px-12 py-3 text-sm font-medium text-slate-500 hover:bg-slate-600 hover:text-white focus:outline-none focus:ring active:bg-slate-500">Delete Payment</button>
       {message && <p>{message}</p>}
     </div>
   );

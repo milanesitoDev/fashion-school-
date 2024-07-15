@@ -27,13 +27,16 @@ const GetActivity: React.FC<GetActivityProps> = ({ activityId }) => {
 
     try {
       const response = await axios.get(`${GET_ACTIVITY_URL}/${activityId}`);
+      console.log('Response:', response); // Agregar esto para depuración
 
       if (response.status === 200) {
+        console.log('Activity Data:', response.data); // Agregar esto para depuración
         setActivity(response.data);
       } else {
         setMessage("Failed to fetch activity.");
       }
     } catch (error) {
+      console.error('Error fetching activity:', error); // Agregar esto para depuración
       if (axios.isAxiosError(error)) {
         if (error.response) {
           if (error.response.status === 404) {
