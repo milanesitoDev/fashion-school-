@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const ADD_STUDENT_URL = 'http://18.222.67.121/api/students';
-
 interface AddStudent {
   user_id: number;
   course_id: number;
+  id_rol: number;
 }
+const STUDENTS_URL = '/students';
 
 const AddNewStudents: React.FC = () => {
   const [student, setStudent] = useState<AddStudent>({
     user_id: 0,
     course_id: 1,
+    id_rol: 3
   });
   const [message, setMessage] = useState<string>("");
 
@@ -28,7 +29,7 @@ const AddNewStudents: React.FC = () => {
     setMessage("");
 
     try {
-      const response = await axios.post(ADD_STUDENT_URL, student);
+      const response = await axios.post(STUDENTS_URL, student);
 
       if (response.status === 201) {
         setMessage("Student added successfully");
@@ -79,6 +80,20 @@ const AddNewStudents: React.FC = () => {
               value={student.course_id}
               onChange={handleChange}
               required
+             
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Role ID:
+            <input
+              type="number"
+              name="id_rol"
+              value={student.id_rol}
+              onChange={handleChange}
+              required
+            
             />
           </label>
         </div>

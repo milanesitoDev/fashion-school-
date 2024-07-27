@@ -5,6 +5,8 @@ import { AxiosError } from "axios";
 import useAuth from '../../../hooks/useAuth';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
+
+
 interface LoginProps {}
 
 const LOGIN_URL = '/login';
@@ -42,7 +44,7 @@ export const Login: FC<LoginProps> = () => {
 
             console.log(JSON.stringify(response?.data));
             // const accessToken = response?.data?.accessToken;
-            const roles = response?.data?.role;
+            const roles = response?.data?.rol;
             const from: string = routes_api(roles);
             
             function routes_api(param: string): string {

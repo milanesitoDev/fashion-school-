@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const GET_CALIFICATION_BY_ID_URL = 'http://18.222.67.121/api/califications';
+const GET_CALIFICATION_BY_ID_URL = 'http://18.222.67.121/califications';
 
+// Definir el tipo de datos esperados
 interface CalificationData {
   id: number;
   activity_id: number;
@@ -42,9 +43,13 @@ const GetCalificationById: React.FC = () => {
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response) {
-          setMessage(`Error: ${error.response.data.error}`);
+          if (error.response.status === 404) {
+            setMessage("Calification not found");
+          } else {
+            setMessage("An error occurred: " + error.message);
+          }
         } else {
-          setMessage(`An error occurred: ${error.message}`);
+          setMessage("An error occurred: " + error.message);
         }
       } else {
         setMessage("An unexpected error occurred");

@@ -25,12 +25,11 @@ interface RetrieveStudentProps {
 const RetrieveIdStudent: React.FC<RetrieveStudentProps> = ({ studentId }) => {
   const [student, setStudent] = useState<Student | null>(null);
   const [message, setMessage] = useState<string>("");
-
   useEffect(() => {
     const fetchStudent = async () => {
       try {
-        const response = await axios.get(`http://18.222.67.121/api/student/${studentId}`);
-
+        const response = await axios.get(`http://18.222.67.121/api/estudiantes/${studentId}`);
+        
         console.log("API Response:", response.data);
 
         if (response.status === 200) {
