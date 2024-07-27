@@ -18,6 +18,8 @@ interface Student {
   course: Course | null;
 }
 
+const STUDENTS_URL = 'http://18.222.67.121/api/students';
+
 const RetrieveStudents: React.FC = () => {
   const [students, setStudents] = useState<Student[]>([]);
   const [message, setMessage] = useState<string>("");
@@ -25,7 +27,7 @@ const RetrieveStudents: React.FC = () => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get('http://18.222.67.121/api/student');
+        const response = await axios.get(STUDENTS_URL);
 
         console.log("API Response:", response.data);
 

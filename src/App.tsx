@@ -20,6 +20,12 @@ import Register from './auth/pages/register/register.pages';
 import ForgotPassword from './auth/pages/forgotPass/forgotPassword.page';
 
 import ApiManagerCalification from './api/components/califications/ApiManagerCalification';
+import ApiManagerAdvice from './api/components/advices/ApiManagerAdvice';
+import ApiManagerSchedule from './api/components/schedules/ApiManagerSchedule';
+import ApiManagerUser from './api/components/users/apiManagerUser';
+import ApiManagerProduct from './api/components/products/ApiManagerProduct';
+import ApiManagerStudent from './api/components/students/studentManagement';
+import ApiManagerPayment from './api/components/payments/ApiManagerPayment';
 
 interface Roles {
   Admin: string;  
@@ -90,7 +96,7 @@ const App: FC = () => {
         <Route path="/../unauthorized" element={<Unauthorized/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/forgotpassword" element={<ForgotPassword/>}/>
-        <Route path="/RetrieveIdStudent" element={<ApiManagerCalification/>}/>
+        <Route path="/RetrieveIdStudent" element={<ApiManagerStudent/>}/>
 
  k
         {/* Routes protected */}
