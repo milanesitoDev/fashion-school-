@@ -16,20 +16,20 @@ interface ProfileCardProps {
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ teacherData }) => {
   const navigate = useNavigate();
-  const [imageUrl, setImageUrl] = useState<string>("images/profile.jpg");
+  const [imageUrl, setImageUrl] = useState<string>("../images/profile.jpg");
 
   const onLogout = () => {
     navigate("/login", {
       replace: true,
     });
   };
-
+//  <ChangeUserImage userId={1} onImageChange={setImageUrl} />
   return (
     <div className="profile-card">
       <div className="profile-card__image">
         <img src={imageUrl} alt="Profile" />
       </div>
-      <ChangeUserImage userId={1} onImageChange={setImageUrl} />
+     
       <div className="profile-card__buttons">
         <i className="bx bxs-camera-movie"></i>
         <i className="bx bxs-bell btn--notification"></i>
@@ -51,7 +51,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ teacherData }) => {
               </Link>
             </li>
             <li>
-              <Link className="dropdown__link" to="/admincalendar">
+              <Link className="dropdown__link" to="/teacher/calendar">
                 Calendario
               </Link>
             </li>
