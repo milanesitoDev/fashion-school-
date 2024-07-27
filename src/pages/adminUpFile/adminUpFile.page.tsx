@@ -1,7 +1,7 @@
 import React from "react";
 
 import Navbar from "../../components/navbar/navbar.component";
-import ProfileCard from "../../components/profileCard/profileCard.component";
+import ProfileCard from "../../components/ProfileCard/profileCard.component";
 
 import "./adminUpFile.page.css";
 

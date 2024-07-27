@@ -5,10 +5,9 @@ import Navbar from "../../components/navbar/navbar.component";
 import "./home.page.css";
 import Slider from "../../components/slider/slider";
 import Gallery from "../../components/gallery/gallery";
-import DateCalendarValue from "../calendar/calendar.page";
 import imgEvent from '/images/image 120.png'
 import UsTeam from "../us/us";
-import CalendarFull from "../calendar/calendar-full";
+
 
 const Home: React.FC = () => {
   return (
@@ -33,7 +32,7 @@ const Home: React.FC = () => {
         <UsTeam/>
       </section>
       <section>
-        <CalendarFull/>
+        
       </section>
       <section className="calendar">
       <div className="header__text__calendar">
@@ -42,7 +41,7 @@ const Home: React.FC = () => {
           </div>
       <div className="eventCalendar">
         
-                <DateCalendarValue />
+                
 
         <img src={imgEvent} alt="" className="imgEvent" />
       </div>

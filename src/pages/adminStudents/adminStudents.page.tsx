@@ -1,6 +1,6 @@
 import React from "react";
 
-import ProfileCard from "../../components/profileCard/profileCard.component";
+import ProfileCard from "../../components/ProfileCard/profileCard.component";
 import Navbar from "../../components/navbar/navbar.component";
 import TeacherSchedule from '../../api/components/schedules/teacherSchedule'; // Asegúrate de que la ruta sea correcta
 
