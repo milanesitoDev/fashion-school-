@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const GET_COURSE_CALIFICATIONS_URL = 'http://18.222.67.121/api/califications/courses';
+const GET_CALIFICATIONS_URL = 'http://18.222.67.121/califications';
 
-interface CourseCalificationData {
-  course: string;
-  teacher: string;
-  califications: Record<string, number[]>;
+// Definir el tipo de datos esperados
+interface CalificationData {
+  "info activity": {
+    course: string;
+    teacher: string;
+  };
+  califications: {
+    [key: string]: number[];
+  };
 }
 
 const GetCourseCalifications: React.FC = () => {
   const [studentId, setStudentId] = useState<number | null>(null);
   const [courseId, setCourseId] = useState<number | null>(null);
-  const [data, setData] = useState<CourseCalificationData | null>(null);
+  const [data, setData] = useState<CalificationData | null>(null);
   const [message, setMessage] = useState<string>("");
 
   const handleStudentIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +28,7 @@ const GetCourseCalifications: React.FC = () => {
     setCourseId(Number(e.target.value));
   };
 
-  const handleGetCourseCalifications = async () => {
+  const handleGetCalifications = async () => {
     setMessage("");
     setData(null);
 
@@ -33,20 +38,26 @@ const GetCourseCalifications: React.FC = () => {
     }
 
     try {
-      const response = await axios.get(`${GET_COURSE_CALIFICATIONS_URL}/${studentId}/course/${courseId}`);
+      const response = await axios.get(`${GET_CALIFICATIONS_URL}/${studentId}/course/${courseId}`);
 
       if (response.status === 200) {
         setData(response.data.data);
-        setMessage("Course califications retrieved successfully");
+        setMessage("Califications retrieved successfully");
       } else {
-        setMessage("Failed to retrieve course califications");
+        setMessage("Failed to retrieve califications");
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response) {
-          setMessage(`Error: ${error.response.data.error}`);
+          if (error.response.status === 400) {
+            setMessage("Bad request: " + error.response.data.error);
+          } else if (error.response.status === 404) {
+            setMessage("No califications found for this course and student");
+          } else {
+            setMessage("An error occurred: " + error.message);
+          }
         } else {
-          setMessage(`An error occurred: ${error.message}`);
+          setMessage("An error occurred: " + error.message);
         }
       } else {
         setMessage("An unexpected error occurred");
@@ -56,7 +67,7 @@ const GetCourseCalifications: React.FC = () => {
 
   return (
     <div>
-      <h2>Get Course Califications by Student ID and Course ID</h2>
+      <h2>Get Course Califications</h2>
       <div>
         <label>
           Student ID:
@@ -81,19 +92,23 @@ const GetCourseCalifications: React.FC = () => {
           />
         </label>
       </div>
-      <button onClick={handleGetCourseCalifications}>Get Course Califications</button>
+      <button onClick={handleGetCalifications}>Get Califications</button>
       {message && <p>{message}</p>}
       {data && (
         <div>
           <h3>Course Info</h3>
-          <p>Course Name: {data.course}</p>
-          <p>Teacher Name: {data.teacher}</p>
+          <p>Course: {data["info activity"].course}</p>
+          <p>Teacher: {data["info activity"].teacher}</p>
           <h3>Califications</h3>
           <ul>
-            {Object.entries(data.califications).map(([activityName, califications]) => (
-              <li key={activityName}>
-                <p>Activity Name: {activityName}</p>
-                <p>Califications: {califications.join(', ')}</p>
+            {Object.entries(data.califications).map(([activity, grades]) => (
+              <li key={activity}>
+                {activity}:
+                <ul>
+                  {grades.map((grade, index) => (
+                    <li key={index}>{grade}</li>
+                  ))}
+                </ul>
               </li>
             ))}
           </ul>

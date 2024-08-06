@@ -57,7 +57,7 @@ const GetUser: React.FC<GetUserProps> = ({ userId }) => {
 
   return (
     <div>
-      <h2 className="text-center text-lg font-medium">User Details</h2>
+      <h2>User Details</h2>
       {message && <p>{message}</p>}
       {user ? (
         <div>

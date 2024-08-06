@@ -15,10 +15,8 @@ interface Course {
 interface Student {
   id: number;
   user: User;
-  course: Course | null;
+  course: Course | null; // Permite que el curso sea nulo
 }
-
-const STUDENTS_URL = 'http://18.222.67.121/api/students';
 
 const RetrieveStudents: React.FC = () => {
   const [students, setStudents] = useState<Student[]>([]);
@@ -27,9 +25,9 @@ const RetrieveStudents: React.FC = () => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get(STUDENTS_URL);
-
-        console.log("API Response:", response.data);
+        const response = await axios.get('http://18.222.67.121/api/students');
+        
+        console.log("API Response:", response.data); // Imprime la respuesta en la consola
 
         if (response.status === 200) {
           setStudents(response.data.data);

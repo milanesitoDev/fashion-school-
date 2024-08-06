@@ -57,10 +57,10 @@ const ChangeUserPassword: React.FC<ChangeUserPasswordProps> = ({ userId }) => {
 
   return (
     <div>
-      <h2 className="text-center text-lg font-medium">Change User Password</h2>
+      <h2>Change User Password</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label className="text-sm font-medium text-gray-700">
+          <label>
             New Password:
             <input
               type="password"
@@ -68,11 +68,10 @@ const ChangeUserPassword: React.FC<ChangeUserPasswordProps> = ({ userId }) => {
               value={password}
               onChange={handleChange}
               required
-              className="mt-6 w-80 h-8 mb-6  rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
             />
           </label>
         </div>
-        <button type="submit" className="inline-block rounded border border-slate-500 px-12 py-3 text-sm font-medium text-slate-500 hover:bg-slate-600 hover:text-white focus:outline-none focus:ring active:bg-slate-500">Change Password</button>
+        <button type="submit">Change Password</button>
       </form>
       {message && <p>{message}</p>}
     </div>

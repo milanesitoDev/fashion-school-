@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 const GET_ACTIVITIES_BY_COURSE_URL = 'http://18.222.67.121/api/activities/course';
 
@@ -19,32 +19,32 @@ interface CourseActivitiesProps {
 
 const CourseActivities: React.FC<CourseActivitiesProps> = ({ courseId }) => {
   const [activities, setActivities] = useState<Activity[]>([]);
-  const [message, setMessage] = useState<string>('');
+  const [message, setMessage] = useState<string>("");
 
   const fetchActivities = async () => {
-    setMessage('');
+    setMessage("");
     try {
       const response = await axios.get(`${GET_ACTIVITIES_BY_COURSE_URL}/${courseId}`);
 
       if (response.status === 200) {
         setActivities(response.data.data);
-        setMessage('Activities retrieved successfully');
+        setMessage("Activities retrieved successfully");
       } else {
-        setMessage('Failed to retrieve activities');
+        setMessage("Failed to retrieve activities");
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response) {
           if (error.response.status === 404) {
-            setMessage('Course not found or no activities found for the course');
+            setMessage("Course not found or no activities found for the course");
           } else {
-            setMessage('An error occurred: ' + error.message);
+            setMessage("An error occurred: " + error.message);
           }
         } else {
-          setMessage('An error occurred: ' + error.message);
+          setMessage("An error occurred: " + error.message);
         }
       } else {
-        setMessage('An unexpected error occurred');
+        setMessage("An unexpected error occurred");
       }
     }
   };
@@ -55,8 +55,8 @@ const CourseActivities: React.FC<CourseActivitiesProps> = ({ courseId }) => {
       <button onClick={fetchActivities}>Fetch Activities</button>
       {message && <p>{message}</p>}
       <ul>
-        {activities.map((activity, index) => (
-          <li key={index}>
+        {activities.map((activity) => (
+          <li key={activity.created_at}>
             <h3>{activity.name}</h3>
             <p>Description: {activity.description}</p>
             <p>Video URL: <a href={activity.video_url} target="_blank" rel="noopener noreferrer">{activity.video_url}</a></p>
