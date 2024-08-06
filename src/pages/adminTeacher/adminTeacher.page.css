@@ -23,3 +23,10 @@
   grid-gap: 50px;
   margin-top: 50px;
 }
+
+.admin-teacher__course {
+  display: flex;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
