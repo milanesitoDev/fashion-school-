@@ -36,11 +36,7 @@ const Navbar: React.FC = () => {
               Administracion
             </NavLink>
           </li>
-          <li>
-            <NavLink className="nav__link" to={"/adminqualifications"}>
-              Calificaciones
-            </NavLink>
-          </li>
+        
         </ul>
       </nav>
     </div>

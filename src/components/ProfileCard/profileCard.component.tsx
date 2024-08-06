@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext  } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ChangeUserImage from "../../api/components/users/changeUserImage";
+import useAuth from '../../context/AuthProvider';
 import "./profileCard.component.css";
 
 type Teacher = {
@@ -16,20 +17,22 @@ interface ProfileCardProps {
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ teacherData }) => {
   const navigate = useNavigate();
-  const [imageUrl, setImageUrl] = useState<string>("images/profile.jpg");
+  const [imageUrl, setImageUrl] = useState<string>("../images/profile.jpg");
+
+  const data = useContext(useAuth);
 
   const onLogout = () => {
     navigate("/login", {
       replace: true,
     });
   };
-
+//  <ChangeUserImage userId={1} onImageChange={setImageUrl} />
   return (
     <div className="profile-card">
       <div className="profile-card__image">
         <img src={imageUrl} alt="Profile" />
       </div>
-      <ChangeUserImage userId={1} onImageChange={setImageUrl} />
+     
       <div className="profile-card__buttons">
         <i className="bx bxs-camera-movie"></i>
         <i className="bx bxs-bell btn--notification"></i>
@@ -46,12 +49,12 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ teacherData }) => {
               </Link>
             </li>
             <li>
-              <Link className="dropdown__link" to="/adminqualifications">
+              <Link className="dropdown__link" to="/teacher/calification">
                 Calificaciones
               </Link>
             </li>
             <li>
-              <Link className="dropdown__link" to="/admincalendar">
+              <Link className="dropdown__link" to="/teacher/calendar">
                 Calendario
               </Link>
             </li>
@@ -79,7 +82,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ teacherData }) => {
         </div>
       </div>
       <div className="profile-card__name">
-        <h2>{teacherData.name}</h2>
+        <h2>{data.auth.userName}</h2>
       </div>
       <div className="profile-card__info">
         <div className="info__wrapper info--main">
@@ -100,7 +103,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ teacherData }) => {
           <p className="info__title">Email</p>
           <div className="info__data">
             <i className="icon bx bx-envelope"></i>
-            <p>{teacherData.email}</p>
+            <p>{data.auth.user}</p>
           </div>
         </div>
       </div>

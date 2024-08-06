@@ -1,0 +1,53 @@
+.students {
+    display: flex;
+    flex-direction: column;
+    border-radius: 18px;
+    box-shadow: 0px 3px 4px 1px #0a0a0a66;
+    background-color: #fafafa;
+    padding: 28px;
+    margin-top: 50px;
+  }
+  
+  .students__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .students__title {
+    font-size: 1.5em;
+    margin-bottom: 2px;
+  }
+  
+  .students__text {
+    font-weight: 300;
+  }
+  
+  .text-number {
+    color: #808080;
+  }
+  
+  .wrapper__btn .icon {
+    cursor: pointer;
+    background-color: #002b3b;
+    font-size: 1.6em;
+    color: #fafafa;
+    padding: 16px;
+    border-radius: 50%;
+  }
+  
+  .students__list {
+    margin-top: 100px;
+  }
+  
+  .students__btn {
+    cursor: pointer;
+    margin-top: 28px;
+    padding: 12px;
+    border-radius: 30px;
+    border: none;
+    font-size: 1.2em;
+    font-weight: 600;
+    background-color: #f1f4f5;
+  }
+  
